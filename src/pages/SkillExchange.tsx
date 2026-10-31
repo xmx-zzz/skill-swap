@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import "./skillExchange.css";
+import "./SkillExchange.css";
 
 type User = {
   id: number;
