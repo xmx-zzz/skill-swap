@@ -1,0 +1,34 @@
+.login__main {
+    width: min(100%, 900px);
+    margin: clamp(28px, 5vw, 64px) auto 0;
+}
+
+.login__banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(96px, 12vw, 150px);
+}
+
+.login__register-link {
+    padding: 12px clamp(32px, 6vw, 64px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: clamp(16px, 1.6vw, 20px);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login__divider {
+    margin: 28px 0 32px;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: min(100%, 540px);
+    margin: 0 auto;
+}
