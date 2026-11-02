@@ -1,0 +1,712 @@
+/* =========================
+   全体
+========================= */
+
+.chat-page {
+  min-height: 100vh;
+  background: #f5f8fc;
+  color: #25344a;
+  font-family: inherit;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+
+.chat-header {
+  height: 68px;
+  background: #ffffff;
+  border-bottom: 1px solid #e8edf4;
+}
+
+.chat-header-inner {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-logo {
+  color: #263b59;
+  font-size: 23px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.chat-logo span {
+  color: #4385e8;
+}
+
+.chat-header-label {
+  color: #91a0b5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* =========================
+   メイン
+========================= */
+
+.chat-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 35px 24px 55px;
+}
+
+.chat-page-heading {
+  margin-bottom: 25px;
+}
+
+.chat-section-label {
+  color: #4385e8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.chat-page-heading h1 {
+  margin: 7px 0;
+  color: #263b59;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.chat-page-heading p {
+  margin: 0;
+  color: #8b99aa;
+  font-size: 13px;
+}
+
+/* =========================
+   チャットコンテナ
+========================= */
+
+.chat-container {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  min-height: 650px;
+  background: #ffffff;
+  border: 1px solid #e7edf5;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px rgba(39, 65, 100, 0.04);
+}
+
+/* =========================
+   左側：チャット一覧
+========================= */
+
+.chat-sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #edf1f6;
+  min-width: 0;
+}
+
+.chat-sidebar-heading {
+  height: 65px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #edf1f6;
+}
+
+.chat-sidebar-heading h2 {
+  margin: 0;
+  color: #34445b;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.chat-sidebar-heading > span {
+  min-width: 23px;
+  height: 23px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: #edf4ff;
+  color: #4385e8;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* 検索 */
+
+.chat-search {
+  height: 39px;
+  margin: 15px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f5f7fa;
+  border: 1px solid #edf0f4;
+  border-radius: 7px;
+}
+
+.chat-search > span {
+  color: #8b9aaf;
+  font-size: 21px;
+}
+
+.chat-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #34445b;
+  font-size: 12px;
+}
+
+.chat-search input::placeholder {
+  color: #a3afbd;
+}
+
+/* ユーザー一覧 */
+
+.chat-user-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chat-user-item {
+  width: 100%;
+  min-height: 83px;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  border-bottom: 1px solid #f0f2f6;
+  background: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chat-user-item:hover {
+  background: #f7faff;
+}
+
+.chat-user-item.selected {
+  background: #eef5ff;
+  border-left: 3px solid #4385e8;
+}
+
+.chat-user-avatar,
+.conversation-avatar {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #edf3fc;
+  font-size: 23px;
+}
+
+.online-indicator {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: #38c98a;
+}
+
+.chat-user-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.chat-user-top,
+.chat-user-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.chat-user-top h3 {
+  margin: 0;
+  color: #34445b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.chat-user-time {
+  flex-shrink: 0;
+  color: #a1adbb;
+  font-size: 10px;
+}
+
+.chat-user-bottom {
+  margin-top: 7px;
+}
+
+.chat-user-bottom p {
+  margin: 0;
+  overflow: hidden;
+  color: #8996a7;
+  font-size: 11px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.unread-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #4385e8;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.chat-no-users {
+  padding: 30px 15px;
+  color: #9aa6b5;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* =========================
+   右側：会話画面
+========================= */
+
+.chat-conversation {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 相手の情報 */
+
+.conversation-header {
+  min-height: 65px;
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #edf1f6;
+}
+
+.conversation-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.conversation-avatar {
+  width: 42px;
+  height: 42px;
+}
+
+.conversation-user h2 {
+  margin: 0;
+  color: #34445b;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.conversation-user p {
+  margin: 4px 0 0;
+  color: #9aa6b5;
+  font-size: 11px;
+}
+
+.conversation-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #9aa6b5;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38c98a;
+}
+
+/* スキル情報 */
+
+.conversation-profile {
+  padding: 12px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  background: #fbfcfe;
+  border-bottom: 1px solid #edf1f6;
+}
+
+.profile-skill {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.profile-skill-label {
+  color: #8997a9;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.profile-tags span {
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: #eaf2ff;
+  color: #4385e8;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.profile-tags.learn span {
+  background: #fff2e8;
+  color: #e79a58;
+}
+
+/* =========================
+   メッセージ表示
+========================= */
+
+.conversation-messages {
+  flex: 1;
+  min-height: 330px;
+  max-height: 430px;
+  padding: 22px;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+.message-date {
+  margin-bottom: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-date span {
+  padding: 5px 13px;
+  border-radius: 20px;
+  background: #f2f5f9;
+  color: #9ba7b6;
+  font-size: 10px;
+}
+
+.message-row {
+  margin-bottom: 19px;
+  display: flex;
+  align-items: flex-end;
+  gap: 9px;
+}
+
+.my-message {
+  justify-content: flex-end;
+}
+
+.other-message {
+  justify-content: flex-start;
+}
+
+.message-avatar {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #edf3fc;
+  font-size: 16px;
+}
+
+.message-content {
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-message .message-content {
+  align-items: flex-end;
+}
+
+.other-message .message-content {
+  align-items: flex-start;
+}
+
+.message-bubble {
+  padding: 11px 15px;
+  border-radius: 13px;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.my-message .message-bubble {
+  border-bottom-right-radius: 3px;
+  background: #4385e8;
+  color: #ffffff;
+}
+
+.other-message .message-bubble {
+  border-bottom-left-radius: 3px;
+  background: #f0f3f7;
+  color: #46566b;
+}
+
+.message-time {
+  margin-top: 5px;
+  color: #aab4c0;
+  font-size: 9px;
+}
+
+/* =========================
+   メッセージ入力
+========================= */
+
+.message-input-area {
+  margin: 0 20px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  border: 1px solid #e5ebf2;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.message-input-area textarea {
+  width: 100%;
+  min-height: 35px;
+  max-height: 100px;
+  padding: 8px 3px;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #34445b;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.message-input-area textarea::placeholder {
+  color: #aab4c0;
+}
+
+.message-send-button {
+  min-width: 75px;
+  height: 34px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: none;
+  border-radius: 7px;
+  background: #4385e8;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.message-send-button:hover:not(:disabled) {
+  background: #286bcf;
+}
+
+.message-send-button:disabled {
+  background: #b9cce8;
+  cursor: not-allowed;
+}
+
+.message-input-note {
+  margin: 7px 22px 13px;
+  color: #aab4c0;
+  font-size: 9px;
+  text-align: right;
+}
+
+/* =========================
+   空の状態
+========================= */
+
+.chat-empty {
+  flex: 1;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.chat-empty > div {
+  font-size: 45px;
+}
+
+.chat-empty h2 {
+  margin: 15px 0 5px;
+  color: #46566b;
+  font-size: 16px;
+}
+
+.chat-empty p {
+  color: #9aa6b5;
+  font-size: 12px;
+}
+
+/* =========================
+   フッター
+========================= */
+
+.chat-footer {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid #e8edf4;
+  background: #ffffff;
+}
+
+.chat-footer p {
+  margin: 0;
+  color: #718096;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.chat-footer span {
+  color: #a2adbb;
+  font-size: 10px;
+}
+
+/* =========================
+   タブレット
+========================= */
+
+@media (max-width: 900px) {
+  .chat-container {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+
+  .conversation-profile {
+    gap: 10px;
+  }
+}
+
+/* =========================
+   スマートフォン
+========================= */
+
+@media (max-width: 650px) {
+  .chat-header-inner {
+    padding: 0 16px;
+  }
+
+  .chat-main {
+    padding: 25px 12px 35px;
+  }
+
+  .chat-page-heading {
+    padding: 0 5px;
+  }
+
+  .chat-page-heading h1 {
+    font-size: 24px;
+  }
+
+  .chat-container {
+    grid-template-columns: 1fr;
+    min-height: 600px;
+  }
+
+  .chat-sidebar {
+    border-right: none;
+    border-bottom: 1px solid #edf1f6;
+  }
+
+  .chat-user-list {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .chat-user-item {
+    width: 190px;
+    min-width: 190px;
+    border-right: 1px solid #f0f2f6;
+    border-bottom: none;
+  }
+
+  .chat-user-item.selected {
+    border-left: none;
+    border-bottom: 3px solid #4385e8;
+  }
+
+  .chat-search {
+    margin: 10px 15px;
+  }
+
+  .chat-conversation {
+    min-height: 540px;
+  }
+
+  .conversation-header {
+    padding: 10px 14px;
+  }
+
+  .conversation-profile {
+    padding: 12px 14px;
+  }
+
+  .conversation-messages {
+    padding: 17px 12px;
+    min-height: 280px;
+  }
+
+  .message-content {
+    max-width: 82%;
+  }
+
+  .message-input-area {
+    margin: 0 10px;
+  }
+
+  .message-input-note {
+    margin-right: 12px;
+  }
+
+  .chat-footer {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
