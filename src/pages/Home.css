@@ -1,0 +1,303 @@
+
+/* ========================================
+   ホーム画面全体
+======================================== */
+
+.home {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F5F9FD;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   ヒーローセクション
+======================================== */
+
+.hero-section {
+  width: 100%;
+  min-height: 300px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 50px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero-section h1 {
+  color: #05448E;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.hero-section p {
+  color: #A3A9B1;
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0 0 24px;
+}
+
+.hero-button {
+  background-color: #0B77F5;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ========================================
+   各セクション共通
+======================================== */
+
+.popular-skills-section,
+.recommended-section,
+.notifications-section,
+.members-section {
+  margin-top: 50px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.section-subtitle {
+  color: #A3A9B1;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.section-heading h2 {
+  color: #05448E;
+  font-size: 24px;
+  margin: 6px 0 0;
+}
+
+.more-button {
+  background: none;
+  border: none;
+  color: #0B77F5;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ========================================
+   人気スキル
+======================================== */
+
+.popular-skills-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.popular-skill-card {
+  background-color: #FFFFFF;
+  border: 1px solid #A3A9B1;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.popular-skill-card h3 {
+  color: #05448E;
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.popular-skill-card span {
+  color: #A3A9B1;
+  font-size: 13px;
+}
+
+/* ========================================
+   おすすめ・メンバー一覧
+======================================== */
+
+.user-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.user-card,
+.member-card {
+  background-color: #FFFFFF;
+  border: 1px solid #A3A9B1;
+  border-radius: 12px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  background-color: #F5F9FD;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.user-card-info h3,
+.member-card h3 {
+  color: #05448E;
+  font-size: 18px;
+  margin: 0 0 4px;
+}
+
+.user-card-info span,
+.member-card > span {
+  color: #A3A9B1;
+  font-size: 13px;
+}
+
+.match-score {
+  display: inline-block;
+  background-color: #EAF3FF;
+  color: #0B77F5;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 20px;
+  margin-top: 12px;
+}
+
+.user-card p,
+.member-card p {
+  color: #05448E;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 16px 0;
+}
+
+.user-skill-list {
+  color: #05448E;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+
+.user-skill-list span {
+  color: #A3A9B1;
+}
+
+.detail-button {
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #0B77F5;
+  border: 1px solid #0B77F5;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 18px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ========================================
+   お知らせ
+======================================== */
+
+.notification-list {
+  background-color: #FFFFFF;
+  border: 1px solid #A3A9B1;
+  border-radius: 12px;
+  padding: 8px 24px;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid #E5EAF0;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-type {
+  min-width: 75px;
+  background-color: #F5F9FD;
+  color: #05448E;
+  border-radius: 6px;
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.notification-item p {
+  flex: 1;
+  color: #05448E;
+  font-size: 14px;
+  margin: 0;
+}
+
+.notification-date {
+  color: #A3A9B1;
+  font-size: 12px;
+}
+
+/* ========================================
+   メンバー一覧
+======================================== */
+
+.member-card {
+  text-align: left;
+}
+
+/* ========================================
+   レスポンシブ対応
+======================================== */
+
+@media (max-width: 768px) {
+  .home {
+    padding: 20px;
+  }
+
+  .hero-section {
+    padding: 30px;
+  }
+
+  .hero-section h1 {
+    font-size: 28px;
+  }
+
+  .popular-skills-list,
+  .user-card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .notification-item {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .notification-item p {
+    min-width: 100%;
+    order: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .popular-skills-list,
+  .user-card-list {
+    grid-template-columns: 1fr;
+  }
+}
