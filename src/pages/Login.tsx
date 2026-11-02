@@ -35,7 +35,7 @@ export default function Login() {
         setSubmitting(true)
         try {
         await signIn(email.trim(), password)
-        navigate('/')
+        navigate('/discover')
         } catch {
         setFormError('ログインできませんでした。メールアドレスとパスワードを確認してください')
         } finally {
@@ -48,7 +48,7 @@ export default function Login() {
         setSubmitting(true)
         try {
         await signInWithGoogle()
-        navigate('/')
+        navigate('/discover')
         } catch {
         setFormError('Googleでログインできませんでした。もう一度お試しください')
         } finally {
