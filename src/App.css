@@ -1,1 +1,820 @@
 /* アプリ全体のスタイル */
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  color: #243247;
+  background: #f7f9fc;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ========================================
+   ページ全体
+   ======================================== */
+
+.exchange-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f7f9fc;
+}
+
+/* ========================================
+   ヘッダー
+   ======================================== */
+
+.exchange-header {
+  width: 100%;
+  height: 72px;
+  background: #ffffff;
+  border-bottom: 1px solid #e8edf5;
+  display: flex;
+  align-items: center;
+}
+
+.exchange-header-inner {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 28px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exchange-logo {
+  color: #2878e5;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+
+.exchange-logo span {
+  color: #263b59;
+}
+
+.header-label {
+  color: #7d8ca3;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: #f1f6ff;
+  padding: 8px 13px;
+  border-radius: 20px;
+}
+
+/* ========================================
+   メインコンテンツ
+   ======================================== */
+
+.exchange-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 38px 28px 60px;
+  flex: 1;
+}
+
+/* ========================================
+   検索エリア
+   ======================================== */
+
+.exchange-search-section {
+  margin-bottom: 42px;
+}
+
+.exchange-search {
+  width: 100%;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e1e9f4;
+  border-radius: 12px;
+  padding: 0 17px;
+  box-shadow: 0 3px 12px rgba(36, 76, 130, 0.04);
+  transition: 0.2s ease;
+}
+
+.exchange-search:focus-within {
+  border-color: #6ca5f5;
+  box-shadow: 0 0 0 3px rgba(55, 130, 235, 0.1);
+}
+
+.search-icon {
+  color: #8ca0ba;
+  font-size: 25px;
+  margin-right: 12px;
+  line-height: 1;
+}
+
+.exchange-search input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #263b59;
+  font-size: 14px;
+}
+
+.exchange-search input::placeholder {
+  color: #a5b1c1;
+}
+
+.clear-search {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: #edf2f8;
+  color: #718198;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.clear-search:hover {
+  background: #dfe9f7;
+}
+
+/* ========================================
+   カテゴリー
+   ======================================== */
+
+.category-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.category-button {
+  border: 1px solid #e1e9f4;
+  background: #ffffff;
+  color: #718198;
+  border-radius: 22px;
+  padding: 9px 17px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.category-button:hover {
+  border-color: #9bbef0;
+  color: #2878e5;
+}
+
+.category-button.active {
+  background: #2878e5;
+  border-color: #2878e5;
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(40, 120, 229, 0.18);
+}
+
+/* ========================================
+   ユーザー一覧エリア
+   ======================================== */
+
+.exchange-users-section {
+  width: 100%;
+}
+
+.exchange-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 23px;
+}
+
+.section-label {
+  display: block;
+  color: #4388e7;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+  margin-bottom: 8px;
+}
+
+.exchange-section-heading h2 {
+  color: #263b59;
+  font-size: 25px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}
+
+.user-count {
+  color: #4388e7;
+  background: #edf5ff;
+  border: 1px solid #dceaff;
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ========================================
+   タブ
+   ======================================== */
+
+.exchange-tabs {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  border-bottom: 1px solid #e5ebf3;
+  margin-bottom: 22px;
+}
+
+.exchange-tabs button {
+  position: relative;
+  border: none;
+  background: transparent;
+  color: #8b99ac;
+  padding: 0 2px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.exchange-tabs button:hover {
+  color: #4388e7;
+}
+
+.exchange-tabs button.active {
+  color: #2878e5;
+  font-weight: 750;
+}
+
+.exchange-tabs button.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 3px;
+  background: #2878e5;
+  border-radius: 3px 3px 0 0;
+}
+
+/* ========================================
+   ユーザーカード一覧
+   PC：1行3人
+   ======================================== */
+
+.exchange-user-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* ========================================
+   ユーザーカード
+   ======================================== */
+
+.exchange-user-card {
+  min-width: 0;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e7edf5;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 14px rgba(38, 70, 110, 0.035);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.exchange-user-card:hover {
+  transform: translateY(-3px);
+  border-color: #cbdff9;
+  box-shadow: 0 9px 22px rgba(38, 90, 150, 0.09);
+}
+
+/* ========================================
+   プロフィール
+   ======================================== */
+
+.user-card-top {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-wrap: wrap;
+}
+
+.user-avatar {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: #edf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.user-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.user-info h3 {
+  color: #263b59;
+  font-size: 15px;
+  font-weight: 750;
+  margin-bottom: 4px;
+  overflow-wrap: anywhere;
+}
+
+.user-info span {
+  color: #91a0b4;
+  font-size: 12px;
+}
+
+.match-badge {
+  color: #4388e7;
+  background: #edf5ff;
+  border: 1px solid #dceaff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* ========================================
+   自己紹介
+   ======================================== */
+
+.user-description {
+  color: #718198;
+  background: #f7faff;
+  border-radius: 9px;
+  padding: 11px 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 17px 0;
+  min-height: 66px;
+  overflow-wrap: anywhere;
+}
+
+/* ========================================
+   スキルグループ
+   ======================================== */
+
+.skill-group {
+  margin-bottom: 16px;
+}
+
+.skill-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #65758c;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.skill-icon {
+  width: 21px;
+  height: 21px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.teach-icon {
+  color: #2b9c79;
+  background: #e8f8f1;
+}
+
+.learn-icon {
+  color: #4388e7;
+  background: #edf5ff;
+}
+
+/* ========================================
+   スキルタグ
+   ======================================== */
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.teach-tag {
+  color: #328b70;
+  background: #eaf8f2;
+  border: 1px solid #d8f0e5;
+}
+
+.learn-tag {
+  color: #397bd0;
+  background: #edf5ff;
+  border: 1px solid #dceaff;
+}
+
+/* ========================================
+   申し込みボタン
+   ======================================== */
+
+.user-card-footer {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.exchange-request-button {
+  width: 100%;
+  min-height: 40px;
+  border: none;
+  border-radius: 9px;
+  background: #2878e5;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 8px;
+  transition: 0.2s ease;
+}
+
+.exchange-request-button:hover:not(:disabled) {
+  background: #1768d2;
+  box-shadow: 0 4px 10px rgba(40, 120, 229, 0.2);
+  transform: translateY(-1px);
+}
+
+.exchange-request-button.requested {
+  color: #4388e7;
+  background: #edf5ff;
+  border: 1px solid #dceaff;
+  cursor: default;
+}
+
+.exchange-request-button:disabled {
+  cursor: default;
+}
+
+/* ========================================
+   検索結果なし
+   ======================================== */
+
+.exchange-empty {
+  padding: 65px 20px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e7edf5;
+  border-radius: 16px;
+}
+
+.exchange-empty > div {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.exchange-empty h3 {
+  color: #344964;
+  font-size: 17px;
+  margin-bottom: 9px;
+}
+
+.exchange-empty p {
+  color: #91a0b4;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.exchange-empty button {
+  border: none;
+  border-radius: 8px;
+  background: #2878e5;
+  color: #ffffff;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 650;
+  transition: 0.2s ease;
+}
+
+.exchange-empty button:hover {
+  background: #1768d2;
+}
+
+/* ========================================
+   フッター
+   ======================================== */
+
+.exchange-footer {
+  width: 100%;
+  min-height: 75px;
+  background: #ffffff;
+  border-top: 1px solid #e8edf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+}
+
+.exchange-footer p {
+  color: #718198;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.exchange-footer span {
+  color: #a3afbe;
+  font-size: 11px;
+}
+
+/* ========================================
+   タブレット
+   1行2人
+   ======================================== */
+
+@media (max-width: 1000px) {
+  .exchange-main {
+    padding: 32px 22px 50px;
+  }
+
+  .exchange-user-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* ========================================
+   スマートフォン
+   1行1人
+   ======================================== */
+
+@media (max-width: 600px) {
+  .exchange-header {
+    height: 62px;
+  }
+
+  .exchange-header-inner {
+    padding: 0 18px;
+  }
+
+  .exchange-logo {
+    font-size: 22px;
+  }
+
+  .header-label {
+    font-size: 9px;
+    padding: 7px 10px;
+  }
+
+  .exchange-main {
+    padding: 25px 16px 40px;
+  }
+
+  .exchange-search-section {
+    margin-bottom: 32px;
+  }
+
+  .exchange-search {
+    height: 49px;
+    padding: 0 13px;
+  }
+
+  .exchange-search input {
+    font-size: 13px;
+  }
+
+  .category-list {
+    gap: 7px;
+    margin-top: 14px;
+  }
+
+  .category-button {
+    padding: 8px 13px;
+    font-size: 12px;
+  }
+
+  .exchange-section-heading {
+    margin-bottom: 20px;
+  }
+
+  .exchange-section-heading h2 {
+    font-size: 21px;
+  }
+
+  .exchange-tabs {
+    gap: 20px;
+  }
+
+  .exchange-user-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .exchange-user-card {
+    padding: 18px;
+  }
+
+  .user-description {
+    min-height: auto;
+  }
+
+  .exchange-footer {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* ヘッダーのチャットボタン */
+.header-chat-button {
+  margin-left: 20px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.header-chat-button:hover {
+  background: #1d4ed8;
+}
+
+/* チャット画面の戻るボタン */
+.chat-page-wrapper {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.back-to-discover-button {
+  display: block;
+  margin: 0 auto;
+  padding: 14px 24px;
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-to-discover-button:hover {
+  color: #1d4ed8;
+}
+
+/* =================================
+   チャット画面
+================================= */
+
+.chat-page-wrapper {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* チャット画面上部のナビゲーション */
+.chat-page-wrapper .chat-navigation {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px 20px !important;
+  margin: 0 !important;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* 戻るボタン */
+.chat-page-wrapper .chat-navigation .back-to-discover-button {
+  display: block !important;
+
+  position: static !important;
+
+  margin: 0 auto 0 0 !important;
+
+  padding: 9px 16px;
+
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+/* =================================
+   ヘッダーのチャットボタン
+================================= */
+
+.header-chat-button {
+  position: relative;
+  margin-left: 20px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.header-chat-button:hover {
+  background: #1d4ed8;
+}
+
+/* =================================
+   未読メッセージ通知
+================================= */
+
+.unread-notification {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 19px;
+  height: 19px;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+
+  background: #ef4444;
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =================================
+   スマートフォン対応
+================================= */
+
+@media (max-width: 600px) {
+  .chat-navigation {
+    padding: 10px 16px;
+  }
+
+  .back-to-discover-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .header-chat-button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
