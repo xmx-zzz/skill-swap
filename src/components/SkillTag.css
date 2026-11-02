@@ -1,0 +1,34 @@
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.teach-tag {
+  color: #328b70;
+  background: #eaf8f2;
+  border: 1px solid #d8f0e5;
+}
+
+.learn-tag {
+  color: #397bd0;
+  background: #edf5ff;
+  border: 1px solid #dceaff;
+}
+
+.plain-tag {
+  color: #718198;
+  background: #f7f9fc;
+  border: 1px solid #e1e9f4;
+}
+
+.skill-tag-category {
+  margin-left: 5px;
+  font-size: 10px;
+  opacity: 0.72;
+}
