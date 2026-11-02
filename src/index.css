@@ -1,1 +1,25 @@
 /* ページ全体の基本スタイル */
+:root {
+  --color-bg: #f5f9fd; /* 背景 */
+  --color-main: #05448e; /* ロゴの色・主な文字 */
+  --color-sub: #a3a9b1; /* アイコン・枠線・サブ文字 */
+  --color-primary: #0b77f5; /* ボタンの背景 */
+   --color-error: #d32f2f; /* エラー表示(Figmaにないので仮) */
+
+    --font-body: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    --font-logo: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
