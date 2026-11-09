@@ -1,0 +1,204 @@
+/* ================================================================
+    検索結果一覧（スキル一覧）の見た目
+ * ================================================================ */
+
+/* ---- ページ全体 ---- */
+.ss-page {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 34px 28px 60px;
+}
+
+/* ---- 見出し ---- */
+.ss-head {
+    margin-bottom: 22px;
+}
+
+.ss-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: #4388e7;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: 1.7px;
+}
+
+.ss-title {
+    color: #263b59;
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    overflow-wrap: anywhere;
+}
+
+.ss-lead {
+    margin-top: 6px;
+    color: #91a0b4;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ---- カテゴリーの絞り込み ---- */
+.ss-chips {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 22px;
+}
+
+.ss-chip {
+    padding: 9px 17px;
+    color: #718198;
+    background: #ffffff;
+    border: 1px solid #e1e9f4;
+    border-radius: 22px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.ss-chip:hover {
+    color: #4388e7;
+    border-color: #cbdff9;
+}
+
+.ss-chip.is-active {
+    color: #ffffff;
+    background: #2878e5;
+    border-color: #2878e5;
+    font-weight: 700;
+}
+
+/* ---- スキル一覧 ---- */
+.ss-skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ss-skill-list>li {
+    list-style: none;
+}
+
+.ss-skill-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 17px;
+    background: #ffffff;
+    border: 1px solid #e7edf5;
+    border-radius: 12px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.ss-skill-row:hover {
+    border-color: #cbdff9;
+    box-shadow: 0 4px 14px rgba(38, 90, 150, 0.07);
+}
+
+/* 名前は伸び、人数と矢印は固定 */
+.ss-skill-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.ss-skill-name {
+    display: block;
+    color: #243247;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.ss-skill-cat {
+    display: block;
+    margin-top: 2px;
+    color: #91a0b4;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.ss-skill-count {
+    flex-shrink: 0;
+    padding: 4px 11px;
+    color: #4388e7;
+    background: #edf5ff;
+    border: 1px solid #dceaff;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.ss-skill-go {
+    flex-shrink: 0;
+    color: #c2cddb;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.ss-skill-row:hover .ss-skill-go {
+    color: #4388e7;
+}
+
+/* ---- もっと見る ---- */
+.ss-more {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px;
+    color: #4388e7;
+    background: #ffffff;
+    border: 1px solid #dceaff;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.ss-more:hover {
+    color: #ffffff;
+    background: #2878e5;
+    border-color: #2878e5;
+}
+
+/* ---- 狭い画面 ---- */
+@media (max-width: 600px) {
+    .ss-page {
+        padding: 22px 16px 40px;
+    }
+
+    .ss-title {
+        font-size: 20px;
+    }
+
+    .ss-chip {
+        padding: 7px 13px;
+        font-size: 12px;
+    }
+
+    .ss-skill-row {
+        gap: 10px;
+        padding: 13px 14px;
+    }
+}

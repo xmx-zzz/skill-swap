@@ -1,25 +1,66 @@
-/* ページ全体の基本スタイル */
+/* ================================================================
+   アプリ全体のベース
+   ================================================================ */
+
+/* チーム共通の色・フォント（develop から） */
 :root {
   --color-bg: #f5f9fd; /* 背景 */
   --color-main: #05448e; /* ロゴの色・主な文字 */
   --color-sub: #a3a9b1; /* アイコン・枠線・サブ文字 */
   --color-primary: #0b77f5; /* ボタンの背景 */
-   --color-error: #d32f2f; /* エラー表示(Figmaにないので仮) */
+  --color-error: #d32f2f; /* エラー表示(Figmaにないので仮) */
 
-    --font-body: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
-    --font-logo: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --font-logo: 'Barlow Condensed', 'Arial Narrow', sans-serif;
 }
 
+/* 幅の計算を border 込みにそろえる（develop から） */
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background: var(--color-bg);
-    color: var(--color-main);
-    font-family: var(--font-body);
-    line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+  color: var(--color-main);
+  background: var(--color-bg);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 下線と既定の青をやめる（a の見た目は各コンポーネント側で決める） */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 戻るボタンなどを <button> で作っても文字が継承されるようにする */
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 黒点を消す（並べ方は各画面の grid / flex が決める） */
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
