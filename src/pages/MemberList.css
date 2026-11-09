@@ -1,0 +1,199 @@
+/* ================================================================
+    メンバー一覧ページ（?skill=ID の一覧も同じ画面）
+ * ================================================================ */
+
+/* ---- ページ全体 ---- */
+.ml-page {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 34px 28px 60px;
+}
+
+/* ---- 戻るリンク ----
+   <a> でも <button> でも同じ見た目になるよう両方に指定する
+   （<button> はブラウザ既定の枠線・背景が付くため） */
+.ml-back,
+button.ml-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    padding: 8px 14px;
+    color: #4388e7;
+    background: #ffffff;
+    border: 1px solid #dceaff;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.ml-back:hover,
+button.ml-back:hover {
+    color: #2878e5;
+    background: #f5f9ff;
+    border-color: #cbdff9;
+}
+
+/* ---- 見出し ---- */
+.ml-head {
+    margin-bottom: 20px;
+}
+
+.ml-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: #4388e7;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: 1.7px;
+}
+
+.ml-title {
+    color: #263b59;
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    overflow-wrap: anywhere;
+}
+
+.ml-lead {
+    margin-top: 6px;
+    color: #91a0b4;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ---- 並び順タブの並び ---- */
+.ml-sort {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid #e5ebf3;
+}
+
+/* ---- 並び順タブ ---- */
+.ml-sort-tab,
+button.ml-sort-tab {
+    padding: 8px 16px;
+    color: #8b99ac;
+    background: #ffffff;
+    border: 1px solid #e1e9f4;
+    border-radius: 22px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.ml-sort-tab:hover,
+button.ml-sort-tab:hover {
+    color: #4388e7;
+    border-color: #cbdff9;
+}
+
+/* 選択中。クラス名でも aria 属性でも拾えるようにしておく */
+.ml-sort-tab.active,
+.ml-sort-tab.is-active,
+.ml-sort-tab[aria-pressed='true'],
+.ml-sort-tab[aria-selected='true'] {
+    color: #ffffff;
+    background: #2878e5;
+    border-color: #2878e5;
+    font-weight: 700;
+}
+
+/* ---- 件数バッジ ---- */
+.ml-count {
+    margin-left: auto;
+    padding: 7px 13px;
+    color: #4388e7;
+    background: #edf5ff;
+    border: 1px solid #dceaff;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+/* ================================================================
+ * カードの並べ方（3列 → 2列 → 1列）
+ * ページ全体が縦にスクロールし、カードは横に並ぶ
+ * ================================================================ */
+
+.ml-grid {
+    display: grid;
+    /* 幅が足りないときは自動で列数が減る（カードが横長に伸びない） */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* 横は20px、縦は26px。影(14px)とタグがぶつからないよう縦を広めに */
+    column-gap: 20px;
+    row-gap: 26px;
+    /* 同じ行のカードの高さを揃える */
+    grid-auto-rows: 1fr;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mc-item {
+    display: flex;
+    min-width: 0;
+    list-style: none;
+}
+
+/* カードを <li> の高さいっぱいに広げる */
+.mc-item>.mc {
+    width: 100%;
+}
+
+/* ---- 該当なしのとき ---- */
+.ml-empty {
+    padding: 46px 20px;
+    color: #91a0b4;
+    background: #ffffff;
+    border: 1px dashed #dce3ee;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* ---- 狭い画面 ---- */
+@media (max-width: 600px) {
+    .ml-page {
+        padding: 22px 16px 40px;
+    }
+
+    .ml-title {
+        font-size: 20px;
+    }
+
+    .ml-sort-tab,
+    button.ml-sort-tab {
+        padding: 7px 13px;
+        font-size: 12px;
+    }
+
+    .ml-grid {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 16px;
+    }
+}
