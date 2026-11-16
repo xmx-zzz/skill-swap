@@ -37,7 +37,8 @@ export default function Profile() {
 
     const isEmpty =
         !profile.username &&
-        !profile.school &&
+        profile.age === null &&
+        !profile.prefecture &&
         !profile.description &&
         profile.teaches.length === 0 &&
         profile.learns.length === 0
@@ -51,15 +52,19 @@ export default function Profile() {
             ) : (
                 <dl className="profile__list">
                     <div className="profile__item">
-                        <dt>ユーザー名</dt>
+                        <dt>名前</dt>
                         <dd>{profile.username || '未設定'}</dd>
                     </div>
                     <div className="profile__item">
-                        <dt>学校・学科</dt>
-                        <dd>{profile.school || '未設定'}</dd>
+                        <dt>年齢</dt>
+                        <dd>{profile.age === null ? '未設定' : `${profile.age}歳`}</dd>
                     </div>
                     <div className="profile__item">
-                        <dt>自己紹介</dt>
+                        <dt>出身地</dt>
+                        <dd>{profile.prefecture || '未設定'}</dd>
+                    </div>
+                    <div className="profile__item">
+                        <dt>メッセージ</dt>
                         <dd>{profile.description || '未設定'}</dd>
                     </div>
                     <div className="profile__item">
@@ -69,7 +74,7 @@ export default function Profile() {
                         </dd>
                     </div>
                     <div className="profile__item">
-                        <dt>学びたいスキル</dt>
+                        <dt>交換したいスキル</dt>
                         <dd>
                             <SkillList skills={profile.learns} />
                         </dd>
