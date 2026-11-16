@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
-import type { FormEvent, ReactNode } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { ChangeEvent, FormEvent, ReactNode } from 'react'
+import { Icon } from '@iconify/react'
 import { useNavigate } from 'react-router-dom'
 import SkillTagEditor from '../components/SkillTagEditor'
+import { fileToAvatarDataUrl } from '../lib/image'
 import { PREFECTURES, loadProfile, saveProfile } from '../lib/profile'
 import './ProfileEdit.css'
 
@@ -87,10 +89,13 @@ export default function ProfileEdit() {
         learns: [],
     })
     const [errors, setErrors] = useState<Errors>({})
+    const [avatarError, setAvatarError] = useState('')
     const [loading, setLoading] = useState(true)
     const [formError, setFormError] = useState('')
     const [submitting, setSubmitting] = useState(false)
     const navigate = useNavigate()
+    // 画面に出さない「ファイルを選ぶ入力欄」を、ボタンから開くための目印
+    const fileInputRef = useRef<HTMLInputElement>(null)
 
     // 画面が表示されたときに、1回だけ保存済みのプロフィールを入力欄に入れる
     useEffect(() => {
@@ -113,6 +118,21 @@ export default function ProfileEdit() {
     // 1つの項目だけ書き換える(他の項目はそのまま)
     function setField<K extends keyof FormValues>(key: K, value: FormValues[K]) {
         setValues((prev) => ({ ...prev, [key]: value }))
+    }
+
+    // 画像が選ばれたとき
+    async function handleAvatarChange(e: ChangeEvent<HTMLInputElement>) {
+        const file = e.target.files?.[0]
+        // 同じ画像をもう一度選んでも反応するように、選択をリセットしておく
+        e.target.value = ''
+        if (!file) return
+
+        setAvatarError('')
+        try {
+            setField('avatar', await fileToAvatarDataUrl(file))
+        } catch (error) {
+            setAvatarError(error instanceof Error ? error.message : '画像を変更できませんでした')
+        }
     }
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -157,8 +177,38 @@ export default function ProfileEdit() {
                     <h2 className="profile-edit__card-title">基本情報</h2>
 
                     <div className="profile-edit__basic">
-                        <div className="profile-edit__avatar">
-                            <DefaultAvatar />
+                        {/* 画像 */}
+                        <div className="profile-edit__avatar-col">
+                            <div className="profile-edit__avatar">
+                                {values.avatar ? (
+                                    <img className="profile-edit__avatar-img" src={values.avatar} alt="プロフィール画像" />
+                                ) : (
+                                    <DefaultAvatar />
+                                )}
+                            </div>
+
+                            <button
+                                type="button"
+                                className="profile-edit__avatar-button"
+                                onClick={() => fileInputRef.current?.click()}
+                            >
+                                <Icon icon="mdi:camera" width="18" height="18" aria-hidden="true" />
+                                画像を変更
+                            </button>
+
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept="image/png,image/jpeg,image/webp"
+                                hidden
+                                onChange={handleAvatarChange}
+                            />
+
+                            {avatarError && (
+                                <p className="profile-edit__error profile-edit__avatar-error" role="alert">
+                                    {avatarError}
+                                </p>
+                            )}
                         </div>
 
                         <div className="profile-edit__basic-fields">

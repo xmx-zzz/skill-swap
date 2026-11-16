@@ -1,224 +1,269 @@
 /* プロフィール編集画面。デザインを変えるときは、このファイルを中心に直す。 */
 .profile-edit {
   --pe-blue: #5b84e0; /* 見出しの縦線・保存ボタンの色 */
-    --pe-card-bg: #e7ebf4;
-    --pe-line: #c7cdd9;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 32px 64px;
-    color: #4a4b4e;
+  --pe-card-bg: #e7ebf4;
+  --pe-line: #c7cdd9;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px 64px;
+  color: #4a4b4e;
 }
 
 .profile-edit__message {
-    padding: 40px 32px;
-    color: var(--color-sub);
+  padding: 40px 32px;
+  color: var(--color-sub);
 }
 
 /* ---- 見出し ---- */
 .profile-edit__head {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .profile-edit__title {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 36px;
-    font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 36px;
+  font-weight: 800;
 }
 
 .profile-edit__title::before {
-    content: '';
-    width: 14px;
-    height: 1.3em;
-    background: var(--pe-blue);
+  content: '';
+  width: 14px;
+  height: 1.3em;
+  background: var(--pe-blue);
 }
 
 .profile-edit__lead {
-    margin-top: 8px;
-    font-size: 18px;
-    color: #5b5c5e;
+  margin-top: 8px;
+  font-size: 18px;
+  color: #5b5c5e;
 }
 
 /* ---- カード ---- */
 .profile-edit__form {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .profile-edit__card {
-    padding: 32px;
-    border: 1px solid var(--pe-line);
-    border-radius: 8px;
-    background: var(--pe-card-bg);
+  padding: 32px;
+  border: 1px solid var(--pe-line);
+  border-radius: 8px;
+  background: var(--pe-card-bg);
 }
 
 .profile-edit__card-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    font-size: 22px;
-    font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 800;
 }
 
 .profile-edit__card-title::before {
-    content: '';
-    width: 10px;
-    height: 1.2em;
-    background: var(--pe-blue);
+  content: '';
+  width: 10px;
+  height: 1.2em;
+  background: var(--pe-blue);
 }
 
 /* ---- 基本情報 ---- */
 .profile-edit__basic {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-}
-
-.profile-edit__avatar {
-    flex: none;
-    width: 160px;
-    height: 160px;
-    color: var(--pe-blue);
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
 }
 
 .profile-edit__basic-fields {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
 }
 
 .profile-edit__row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1.3fr;
-    gap: 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.3fr;
+  gap: 24px;
+}
+
+/* ---- プロフィール画像 ---- */
+.profile-edit__avatar-col {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 160px;
+}
+
+.profile-edit__avatar {
+  flex: none;
+  width: 160px;
+  height: 160px;
+  color: var(--pe-blue);
+}
+
+.profile-edit__avatar-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 「画像を変更」ボタン */
+.profile-edit__avatar-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  border: 1px solid var(--pe-line);
+  border-radius: 999px;
+  background: #fff;
+  color: #5b5c5e;
+  font: 400 13px var(--font-body);
+  cursor: pointer;
+}
+
+.profile-edit__avatar-button:hover {
+  border-color: var(--pe-blue);
+  color: var(--pe-blue);
+}
+
+.profile-edit__avatar-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.profile-edit__avatar-error {
+  text-align: center;
 }
 
 /* ---- スキル(2列) ---- */
 .profile-edit__skills {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
 }
 
 /* ---- 入力欄 ---- */
 .profile-edit__field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
 }
 
 .profile-edit__label {
-    font-size: 14px;
-    color: #5b5c5e;
+  font-size: 14px;
+  color: #5b5c5e;
 }
 
 .profile-edit__input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--pe-line);
-    border-radius: 4px;
-    background: #fff;
-    font: 400 14px var(--font-body);
-    color: #4a4b4e;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--pe-line);
+  border-radius: 4px;
+  background: #fff;
+  font: 400 14px var(--font-body);
+  color: #4a4b4e;
 }
 
 /* 1行の入力欄とプルダウンの高さをそろえる */
 input.profile-edit__input,
 select.profile-edit__input {
-    height: 44px;
+  height: 44px;
 }
 
 textarea.profile-edit__input {
-    resize: vertical;
+  resize: vertical;
 }
 
 .profile-edit__input:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 1px;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
 }
 
 /* プルダウンの右端の「v」マーク */
 .profile-edit__select {
-    padding-right: 36px;
-    appearance: none;
-    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%235b5c5e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
-        right 14px center / 12px 8px no-repeat;
+  padding-right: 36px;
+  appearance: none;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%235b5c5e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    right 14px center / 12px 8px no-repeat;
 }
 
 .profile-edit__counter {
-    align-self: flex-end;
-    font-size: 14px;
-    color: #5b5c5e;
-}
-
-.profile-edit__hint {
-    font-size: 12px;
-    color: #5b5c5e;
+  align-self: flex-end;
+  font-size: 14px;
+  color: #5b5c5e;
 }
 
 .profile-edit__error {
-    font-size: 12px;
-    color: var(--color-error);
+  font-size: 12px;
+  color: var(--color-error);
 }
 
 .profile-edit__form-error {
-    text-align: center;
+  text-align: center;
 }
 
 /* ---- 保存ボタン ---- */
 .profile-edit__actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
 }
 
 .profile-edit__save {
-    min-width: 310px;
-    height: 52px;
-    padding: 0 32px;
-    border: 1.5px solid var(--pe-blue);
-    border-radius: 999px;
-    background: #fff;
-    color: var(--pe-blue);
-    font: 700 20px var(--font-body);
-    cursor: pointer;
-    transition: background-color 0.15s, color 0.15s;
+  min-width: 310px;
+  height: 52px;
+  padding: 0 32px;
+  border: 1.5px solid var(--pe-blue);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--pe-blue);
+  font: 700 20px var(--font-body);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
 }
 
 .profile-edit__save:hover:not(:disabled) {
-    background: var(--pe-blue);
-    color: #fff;
+  background: var(--pe-blue);
+  color: #fff;
 }
 
 .profile-edit__save:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* 画面が狭いとき */
 @media (max-width: 900px) {
-    .profile-edit__basic {
-        flex-direction: column;
-        gap: 24px;
-    }
+  .profile-edit__basic {
+    flex-direction: column;
+    gap: 24px;
+  }
 
-    .profile-edit__avatar {
-        width: 120px;
-        height: 120px;
-    }
+  .profile-edit__avatar-col {
+    width: auto;
+  }
 
-    .profile-edit__basic-fields {
-        width: 100%;
-    }
+  .profile-edit__avatar {
+    width: 120px;
+    height: 120px;
+  }
 
-    .profile-edit__row,
-    .profile-edit__skills {
-        grid-template-columns: 1fr;
-    }
+  .profile-edit__basic-fields {
+    width: 100%;
+  }
+
+  .profile-edit__row,
+  .profile-edit__skills {
+    grid-template-columns: 1fr;
+  }
 }
