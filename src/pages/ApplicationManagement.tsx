@@ -17,7 +17,7 @@ const TABS: { key: Tab; label: string; icon: string }[] = [
 ]
 
 // 1ページに出す件数
-const PAGE_SIZE = 2
+const PAGE_SIZE = 5
 
 // 選んでいるタブに合う申請だけを残す
 function filterByTab(list: Application[], tab: Tab): Application[] {
