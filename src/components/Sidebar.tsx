@@ -2,14 +2,15 @@
 import { Icon } from "@iconify/react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
+import logo from "../assets/icons/SKILL_SWAP_rog.png";
 
 function Sidebar() {
   return (
     <aside className="sidebar">
       {/* ロゴ */}
-      <div className="sidebar-logo">
-        SKILL SWAP
-      </div>
+      <NavLink to="/discover" className="sidebar-logo">
+        <img src={logo} alt="SKILL SWAP" />
+      </NavLink>
 
       <nav className="sidebar-menu">
 
@@ -17,9 +18,9 @@ function Sidebar() {
         <NavLink
           to="/discover"
           className={({ isActive }) =>
-          `sidebar-item ${isActive ? "active" : ""}`
+            `sidebar-item ${isActive ? "active" : ""}`
           }
->
+        >
           <span className="sidebar-icon">
             <Icon
               icon="material-symbols:home-rounded"
@@ -28,7 +29,7 @@ function Sidebar() {
             />
           </span>
           <span>ホーム</span>
-        </NavLink>      
+        </NavLink>
 
         {/* プロフィール */}
         <NavLink
@@ -49,24 +50,45 @@ function Sidebar() {
           className={({ isActive }) =>
             `sidebar-item ${isActive ? "active" : ""}`
           }
->
-  <span className="sidebar-icon">
-    <Icon icon="akar-icons:bell" width="24" height="24" />
-  </span>
-  <span>お知らせ</span>
-</NavLink>
+        >
+          <span className="sidebar-icon">
+            <Icon icon="akar-icons:bell" width="24" height="24" />
+          </span>
+          <span>お知らせ</span>
+        </NavLink>
 
         {/* スキル */}
         <NavLink
-          to="/skills"
+          to="/search"
           className={({ isActive }) =>
             `sidebar-item ${isActive ? "active" : ""}`
           }
         >
           <span className="sidebar-icon">
-            <Icon icon="carbon:skill-level-advanced" width="32" height="32" />
+            <Icon
+              icon="carbon:skill-level-advanced"
+              width="32"
+              height="32"
+            />
           </span>
           <span>スキル</span>
+        </NavLink>
+
+        {/* カレンダー */}
+        <NavLink
+          to="/calendar"
+          className={({ isActive }) =>
+            `sidebar-item ${isActive ? "active" : ""}`
+          }
+        >
+          <span className="sidebar-icon">
+            <Icon
+              icon="andrsrxn:calendar-days"
+              width="24"
+              height="24"
+            />
+          </span>
+          <span>カレンダー</span>
         </NavLink>
 
         {/* 申請管理 */}
@@ -75,7 +97,7 @@ function Sidebar() {
           className={({ isActive }) =>
             `sidebar-item ${isActive ? "active" : ""}`
           }
->
+        >
           <span className="sidebar-icon">
             <Icon icon="circum:mail" width="24" height="24" />
           </span>

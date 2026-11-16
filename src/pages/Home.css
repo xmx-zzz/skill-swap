@@ -122,12 +122,13 @@
 
 .popular-skill-card {
   min-height: 50px;
-  padding: 10px 12px;
+  padding: 10px 14px;
   box-sizing: border-box;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 18px;
 
   background-color: #E7EBF4;
   border: 1px solid #D5DAE4;
@@ -138,11 +139,17 @@
   text-decoration: none;
 }
 
+.popular-skill-icon {
+  flex-shrink: 0;
+}
+
+
 /* ========================================
    お知らせ
 ======================================== */
 
 .notifications-section {
+  min-width: 0;
   padding: 22px 18px;
   background-color: #E7EBF4;
   border: 1px solid #A3A9B1;
@@ -150,23 +157,52 @@
   box-sizing: border-box;
 }
 
+/* 見出しともっと見るを横並び */
 .notification-heading {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 18px;
 }
 
-.notification-heading svg {
+/* ベルアイコンとお知らせタイトル */
+.notification-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.notification-title svg {
   color: #4885ED;
   flex-shrink: 0;
 }
 
-.notification-heading h2 {
+.notification-title h2 {
   color: #5B5C5E;
   font-size: 20px;
   font-weight: 800;
   margin: 0;
+  white-space: nowrap;
+}
+
+/* もっと見る */
+.notification-heading .more-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: 0;
+  flex-shrink: 0;
+
+  background: none;
+  border: none;
+  color: #5B5C5E;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .notification-list {

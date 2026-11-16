@@ -11,6 +11,7 @@ import "./Home.css";
 type Skill = {
   id: number;
   name: string;
+  icon: string;
 };
 
 // ユーザー情報
@@ -40,12 +41,36 @@ type Notification = {
 
 // 人気スキルの仮データ
 const popularSkills: Skill[] = [
-  { id: 1, name: "Illustrator" },
-  { id: 2, name: "Photoshop" },
-  { id: 3, name: "Figma" },
-  { id: 4, name: "HTML/CSS" },
-  { id: 5, name: "React" },
-  { id: 6, name: "プログラミング" },
+  {
+    id: 1,
+    name: "Illustrator",
+    icon: "logos:adobe-illustrator",
+  },
+  {
+    id: 2,
+    name: "Photoshop",
+    icon: "logos:adobe-photoshop",
+  },
+  {
+    id: 3,
+    name: "Figma",
+    icon: "logos:figma",
+  },
+  {
+    id: 4,
+    name: "HTML/CSS",
+    icon: "material-symbols:code",
+  },
+  {
+    id: 5,
+    name: "React",
+    icon: "logos:react",
+  },
+  {
+    id: 6,
+    name: "プログラミング",
+    icon: "reicon:programming-arrow-filled",
+  },
 ];
 
 // 相性のいい人の仮データ
@@ -135,7 +160,7 @@ function Home() {
           <div className="section-heading">
             <h2>人気のスキル</h2>
 
-            <Link to="/skills" className="more-button">
+            <Link to="/search" className="more-button">
               もっと見る
               <Icon icon="material-symbols:chevron-right" width="22" />
             </Link>
@@ -144,10 +169,17 @@ function Home() {
           <div className="popular-skills-list">
             {popularSkills.map((skill) => (
               <Link
-                to="/skills"
+                to={`/search?q=${encodeURIComponent(skill.name)}`}
                 className="popular-skill-card"
                 key={skill.id}
               >
+                <Icon
+                  icon={skill.icon}
+                  width={skill.name === "プログラミング" ? "24" : "30"}
+                  height={skill.name === "プログラミング" ? "24" : "30"}
+                  className="popular-skill-icon"
+                />
+
                 <span>{skill.name}</span>
               </Link>
             ))}
@@ -159,8 +191,15 @@ function Home() {
         <section className="notifications-section">
 
           <div className="notification-heading">
-            <Icon icon="akar-icons:bell" width="34" height="34" />
-            <h2>お知らせ</h2>
+            <div className="notification-title">
+              <Icon icon="akar-icons:bell" width="34" height="34" />
+              <h2>お知らせ</h2>
+            </div>
+
+            <Link to="/notice" className="more-button">
+              もっと見る
+              <Icon icon="material-symbols:chevron-right" width="22" />
+            </Link>
           </div>
 
           <div className="notification-list">
