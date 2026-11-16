@@ -1,9 +1,17 @@
-
 import { Icon } from "@iconify/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { signOut } from "../lib/auth";
 import "./Sidebar.css";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
+  // ログアウト: ログイン中の印を消して、ログイン画面に戻る
+  function handleLogout() {
+    signOut();
+    navigate("/login", { replace: true });
+  }
+
   return (
     <aside className="sidebar">
       {/* ロゴ */}
@@ -17,9 +25,9 @@ function Sidebar() {
         <NavLink
           to="/discover"
           className={({ isActive }) =>
-          `sidebar-item ${isActive ? "active" : ""}`
+            `sidebar-item ${isActive ? "active" : ""}`
           }
->
+        >
           <span className="sidebar-icon">
             <Icon
               icon="material-symbols:home-rounded"
@@ -28,7 +36,7 @@ function Sidebar() {
             />
           </span>
           <span>ホーム</span>
-        </NavLink>      
+        </NavLink>
 
         {/* プロフィール */}
         <NavLink
@@ -49,12 +57,12 @@ function Sidebar() {
           className={({ isActive }) =>
             `sidebar-item ${isActive ? "active" : ""}`
           }
->
-  <span className="sidebar-icon">
-    <Icon icon="akar-icons:bell" width="24" height="24" />
-  </span>
-  <span>お知らせ</span>
-</NavLink>
+        >
+          <span className="sidebar-icon">
+            <Icon icon="akar-icons:bell" width="24" height="24" />
+          </span>
+          <span>お知らせ</span>
+        </NavLink>
 
         {/* スキル */}
         <NavLink
@@ -75,7 +83,7 @@ function Sidebar() {
           className={({ isActive }) =>
             `sidebar-item ${isActive ? "active" : ""}`
           }
->
+        >
           <span className="sidebar-icon">
             <Icon icon="circum:mail" width="24" height="24" />
           </span>
@@ -83,7 +91,11 @@ function Sidebar() {
         </NavLink>
 
         {/* ログアウト */}
-        <button className="sidebar-item logout-button" type="button">
+        <button
+          className="sidebar-item logout-button"
+          type="button"
+          onClick={handleLogout}
+        >
           <span className="sidebar-icon">
             <Icon icon="bx:log-out" width="24" height="24" />
           </span>
