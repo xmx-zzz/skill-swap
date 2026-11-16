@@ -47,8 +47,8 @@ export default function MemberList() {
     };
 
 
-    const goBack = () => {
-        navigate('/');　// ホーム。未定義のうちは App.tsx の * が /search に流す
+        const goBack = () => {
+        navigate('/discover'); // ホーム
     };
 
 

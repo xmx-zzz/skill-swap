@@ -104,7 +104,7 @@ import './Register.css'
             birthDate: `${values.year}-${values.month.padStart(2, '0')}-${values.day.padStart(2, '0')}`,
             gender: values.gender,
         })
-        navigate('/')
+        navigate('/discover')
         } catch {
         setFormError('登録できませんでした。入力内容を確認して、もう一度お試しください')
         } finally {
@@ -117,7 +117,7 @@ import './Register.css'
         setSubmitting(true)
         try {
         await signInWithGoogle()
-        navigate('/')
+        navigate('/discover')
         } catch {
         setFormError('Googleで登録できませんでした。もう一度お試しください')
         } finally {
