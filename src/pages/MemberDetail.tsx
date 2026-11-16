@@ -31,7 +31,7 @@ export default function MemberDetail() {
         if (idx > 0) {
             navigate(-1);
         } else {
-            navigate('/');
+            navigate('/members');
         }
     };
 
