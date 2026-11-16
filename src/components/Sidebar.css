@@ -1,13 +1,16 @@
 
 /* サイドバー全体 */
 .sidebar {
-  width: 390px;
-  min-height: 100vh;
+  width: 300px;
+  min-width: 300px;
+  height: 100vh;
   padding: 40px;
   background-color: #E7EBF4;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
 }
 
 /* ロゴ */
