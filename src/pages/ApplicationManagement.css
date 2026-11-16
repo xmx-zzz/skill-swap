@@ -1,0 +1,149 @@
+.app-mgmt {
+  --app-blue: #5b84e0; /* 見出しの縦線・選択中のタブ・ページ番号の色 */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+}
+
+/* ---- 見出し ---- */
+.app-mgmt__head {
+    margin-bottom: 40px;
+}
+
+.app-mgmt__title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 36px;
+    font-weight: 800;
+    color: #4a4b4e;
+}
+
+/* 見出しの左の青い縦線 */
+.app-mgmt__title::before {
+    content: '';
+    width: 14px;
+    height: 1.3em;
+    background: var(--app-blue);
+}
+
+.app-mgmt__lead {
+    margin-top: 8px;
+    font-size: 18px;
+    color: #5b5c5e;
+}
+
+/* ---- タブ ---- */
+.app-mgmt__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.app-mgmt__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 56px;
+    padding: 0 28px;
+    border: 1px solid #c7cdd9;
+    border-radius: 8px;
+    background: #e7ebf4;
+    color: #4a4b4e;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.app-mgmt__tab.is-active {
+    border-color: var(--app-blue);
+    background: var(--app-blue);
+    color: #fff;
+}
+
+/* 「送った申請」の件数(赤い丸) */
+.app-mgmt__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: #d63b3b;
+    color: #fff;
+    font-size: 15px;
+}
+
+/* ---- 一覧 ---- */
+.app-mgmt__message {
+    padding: 24px 0;
+    color: var(--color-sub);
+}
+
+.app-mgmt__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ---- ページ送り ---- */
+.app-mgmt__pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.app-mgmt__arrow {
+    display: flex;
+    padding: 4px;
+    border: 0;
+    background: transparent;
+    color: #4a4b4e;
+}
+
+.app-mgmt__arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.app-mgmt__page {
+    width: 52px;
+    height: 52px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #4a4b4e;
+    font-size: 26px;
+}
+
+.app-mgmt__page.is-current {
+    background: var(--app-blue);
+    color: #fff;
+}
+
+/* キーボード操作のときの枠 */
+.app-mgmt__tab:focus-visible,
+.app-mgmt__page:focus-visible,
+.app-mgmt__arrow:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* 画面が狭いとき(スマホ) */
+@media (max-width: 760px) {
+    .app-mgmt__title {
+        font-size: 28px;
+    }
+
+    .app-mgmt__tabs {
+        gap: 12px;
+    }
+
+    .app-mgmt__tab {
+        padding: 0 18px;
+        font-size: 16px;
+    }
+}
