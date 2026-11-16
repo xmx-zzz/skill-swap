@@ -1,70 +1,79 @@
-import { useEffect, useState } from 'react'
-import type { FormEvent, ReactNode } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { loadProfile, saveProfile, skillsToText, textToSkills } from '../lib/profile'
+import { useEffect, useRef, useState } from 'react'
+import type { ChangeEvent, FormEvent, ReactNode } from 'react'
+import { Icon } from '@iconify/react'
+import { useNavigate } from 'react-router-dom'
+import SkillTagEditor from '../components/SkillTagEditor'
+import { fileToAvatarDataUrl } from '../lib/image'
+import { PREFECTURES, loadProfile, saveProfile } from '../lib/profile'
 import './ProfileEdit.css'
 
-// 入力欄で使う形。スキルは「HTML, CSS」のような1つの文字として扱う
+// 入力欄で使う形。年齢は、入力欄の都合で「文字」として扱う
 type FormValues = {
     username: string
-    school: string
+    age: string
+    prefecture: string
     description: string
-    teaches: string
-    learns: string
+    avatar: string
+    teaches: string[]
+    learns: string[]
 }
 
-type Errors = Partial<Record<keyof FormValues, string>>
+type Errors = Partial<Record<'username' | 'age', string>>
 
-// スキル欄のチェック(10個まで、1つ20文字まで)
-function checkSkills(text: string): string {
-    const skills = textToSkills(text)
-    if (skills.length > 10) return 'スキルは10個までです'
-    if (skills.some((skill) => skill.length > 20)) return '1つのスキルは20文字以内で入力してください'
-    return ''
-}
+// メッセージの最大文字数
+const MESSAGE_MAX = 200
 
 // 入力内容を全部チェックして、見つかったエラーを返す
 function validate(v: FormValues): Errors {
     const errors: Errors = {}
 
     const username = v.username.trim()
-    if (!username) errors.username = 'ユーザー名を入力してください'
-    else if (username.length > 20) errors.username = 'ユーザー名は20文字以内で入力してください'
+    if (!username) errors.username = '名前を入力してください'
+    else if (username.length > 20) errors.username = '名前は20文字以内で入力してください'
 
-    if (v.school.trim().length > 30) errors.school = '学校・学科は30文字以内で入力してください'
-    if (v.description.length > 200) errors.description = '自己紹介は200文字以内で入力してください'
-
-    const teachesError = checkSkills(v.teaches)
-    if (teachesError) errors.teaches = teachesError
-
-    const learnsError = checkSkills(v.learns)
-    if (learnsError) errors.learns = learnsError
+    if (v.age !== '') {
+        const age = Number(v.age)
+        if (!Number.isInteger(age) || age < 0 || age > 120) {
+            errors.age = '年齢は0〜120の整数で入力してください'
+        }
+    }
 
     return errors
 }
 
-// 「項目名 + 入力欄 + 補足 + エラー」の1セット。デザインが決まったら、ここを直す
+// プロフィール画像が無いときの、人型のアイコン
+function DefaultAvatar() {
+    return (
+        <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true">
+            <circle cx="12" cy="12" r="12" fill="currentColor" />
+            <circle cx="12" cy="9.5" r="4" fill="#fff" />
+            <path d="M3.5 19.8C5 15.5 8.2 14 12 14s7 1.5 8.5 5.8A12 12 0 0 1 12 24a12 12 0 0 1-8.5-4.2Z" fill="#fff" />
+        </svg>
+    )
+}
+
+// 「項目名 + 入力欄 + 補足 + エラー」の1セット。デザインが変わったら、ここを直す
 function Field({
     label,
-    hint,
+    counter,
     error,
     children,
-    }: {
+}: {
     label: string
-    hint?: string
+    counter?: string
     error?: string
     children: ReactNode
-    }) {
+}) {
     return (
         <label className="profile-edit__field">
-        <span className="profile-edit__label">{label}</span>
-        {children}
-        {hint && <span className="profile-edit__hint">{hint}</span>}
-        {error && (
-            <span className="profile-edit__error" role="alert">
-            {error}
-            </span>
-        )}
+            <span className="profile-edit__label">{label}</span>
+            {children}
+            {counter && <span className="profile-edit__counter">{counter}</span>}
+            {error && (
+                <span className="profile-edit__error" role="alert">
+                    {error}
+                </span>
+            )}
         </label>
     )
 }
@@ -72,36 +81,58 @@ function Field({
 export default function ProfileEdit() {
     const [values, setValues] = useState<FormValues>({
         username: '',
-        school: '',
+        age: '',
+        prefecture: '',
         description: '',
-        teaches: '',
-        learns: '',
+        avatar: '',
+        teaches: [],
+        learns: [],
     })
     const [errors, setErrors] = useState<Errors>({})
+    const [avatarError, setAvatarError] = useState('')
     const [loading, setLoading] = useState(true)
     const [formError, setFormError] = useState('')
     const [submitting, setSubmitting] = useState(false)
     const navigate = useNavigate()
+    // 画面に出さない「ファイルを選ぶ入力欄」を、ボタンから開くための目印
+    const fileInputRef = useRef<HTMLInputElement>(null)
 
     // 画面が表示されたときに、1回だけ保存済みのプロフィールを入力欄に入れる
     useEffect(() => {
         async function load() {
-        const saved = await loadProfile()
-        setValues({
-            username: saved.username,
-            school: saved.school,
-            description: saved.description,
-            teaches: skillsToText(saved.teaches),
-            learns: skillsToText(saved.learns),
-        })
-        setLoading(false)
+            const saved = await loadProfile()
+            setValues({
+                username: saved.username,
+                age: saved.age === null ? '' : String(saved.age),
+                prefecture: saved.prefecture,
+                description: saved.description,
+                avatar: saved.avatar,
+                teaches: saved.teaches,
+                learns: saved.learns,
+            })
+            setLoading(false)
         }
         load()
     }, [])
 
     // 1つの項目だけ書き換える(他の項目はそのまま)
-    function setField(key: keyof FormValues, value: string) {
-        setValues({ ...values, [key]: value })
+    function setField<K extends keyof FormValues>(key: K, value: FormValues[K]) {
+        setValues((prev) => ({ ...prev, [key]: value }))
+    }
+
+    // 画像が選ばれたとき
+    async function handleAvatarChange(e: ChangeEvent<HTMLInputElement>) {
+        const file = e.target.files?.[0]
+        // 同じ画像をもう一度選んでも反応するように、選択をリセットしておく
+        e.target.value = ''
+        if (!file) return
+
+        setAvatarError('')
+        try {
+            setField('avatar', await fileToAvatarDataUrl(file))
+        } catch (error) {
+            setAvatarError(error instanceof Error ? error.message : '画像を変更できませんでした')
+        }
     }
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -116,10 +147,12 @@ export default function ProfileEdit() {
         try {
             await saveProfile({
                 username: values.username.trim(),
-                school: values.school.trim(),
+                age: values.age === '' ? null : Number(values.age),
+                prefecture: values.prefecture,
                 description: values.description.trim(),
-                teaches: textToSkills(values.teaches),
-                learns: textToSkills(values.learns),
+                avatar: values.avatar,
+                teaches: values.teaches,
+                learns: values.learns,
             })
             navigate('/profile')
         } catch {
@@ -133,69 +166,134 @@ export default function ProfileEdit() {
 
     return (
         <main className="profile-edit">
-        <h1 className="profile-edit__title">プロフィール編集</h1>
+            <header className="profile-edit__head">
+                <h1 className="profile-edit__title">プロフィール</h1>
+                <p className="profile-edit__lead">あなたのプロフィールを編集できます。</p>
+            </header>
 
-        <form className="profile-edit__form" onSubmit={handleSubmit} noValidate>
-            <Field label="ユーザー名" error={errors.username}>
-            <input
-                className="profile-edit__input"
-                type="text"
-                value={values.username}
-                onChange={(e) => setField('username', e.target.value)}
-            />
-            </Field>
+            <form className="profile-edit__form" onSubmit={handleSubmit} noValidate>
+                {/* 基本情報 */}
+                <section className="profile-edit__card">
+                    <h2 className="profile-edit__card-title">基本情報</h2>
 
-            <Field label="学校・学科" error={errors.school}>
-            <input
-                className="profile-edit__input"
-                type="text"
-                value={values.school}
-                onChange={(e) => setField('school', e.target.value)}
-            />
-            </Field>
+                    <div className="profile-edit__basic">
+                        {/* 画像 */}
+                        <div className="profile-edit__avatar-col">
+                            <div className="profile-edit__avatar">
+                                {values.avatar ? (
+                                    <img className="profile-edit__avatar-img" src={values.avatar} alt="プロフィール画像" />
+                                ) : (
+                                    <DefaultAvatar />
+                                )}
+                            </div>
 
-            <Field label="自己紹介" hint="200文字まで" error={errors.description}>
-            <textarea
-                className="profile-edit__input"
-                rows={5}
-                value={values.description}
-                onChange={(e) => setField('description', e.target.value)}
-            />
-            </Field>
+                            <button
+                                type="button"
+                                className="profile-edit__avatar-button"
+                                onClick={() => fileInputRef.current?.click()}
+                            >
+                                <Icon icon="mdi:camera" width="18" height="18" aria-hidden="true" />
+                                画像を変更
+                            </button>
 
-            <Field label="教えられるスキル" hint="カンマ(,)で区切って入力(例: HTML, CSS)" error={errors.teaches}>
-            <input
-                className="profile-edit__input"
-                type="text"
-                value={values.teaches}
-                onChange={(e) => setField('teaches', e.target.value)}
-            />
-            </Field>
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept="image/png,image/jpeg,image/webp"
+                                hidden
+                                onChange={handleAvatarChange}
+                            />
 
-            <Field label="学びたいスキル" hint="カンマ(,)で区切って入力(例: React, Figma)" error={errors.learns}>
-            <input
-                className="profile-edit__input"
-                type="text"
-                value={values.learns}
-                onChange={(e) => setField('learns', e.target.value)}
-            />
-            </Field>
+                            {avatarError && (
+                                <p className="profile-edit__error profile-edit__avatar-error" role="alert">
+                                    {avatarError}
+                                </p>
+                            )}
+                        </div>
 
-            {formError && (
-            <p className="profile-edit__error" role="alert">
-                {formError}
-            </p>
-            )}
+                        <div className="profile-edit__basic-fields">
+                            <div className="profile-edit__row">
+                                <Field label="名前" error={errors.username}>
+                                    <input
+                                        className="profile-edit__input"
+                                        type="text"
+                                        value={values.username}
+                                        onChange={(e) => setField('username', e.target.value)}
+                                    />
+                                </Field>
 
-            <div className="profile-edit__actions">
-            <button className="profile-edit__save" type="submit" disabled={submitting}>
-                保存する
-            </button>
-            <Link className="profile-edit__cancel" to="/profile">
-                キャンセル
-            </Link>
-            </div>
-        </form>
+                                <Field label="年齢" error={errors.age}>
+                                    <input
+                                        className="profile-edit__input"
+                                        type="number"
+                                        inputMode="numeric"
+                                        min={0}
+                                        max={120}
+                                        value={values.age}
+                                        onChange={(e) => setField('age', e.target.value)}
+                                    />
+                                </Field>
+
+                                <Field label="出身地">
+                                    <select
+                                        className="profile-edit__input profile-edit__select"
+                                        value={values.prefecture}
+                                        onChange={(e) => setField('prefecture', e.target.value)}
+                                    >
+                                        <option value="">選択してください</option>
+                                        {PREFECTURES.map((name) => (
+                                            <option key={name} value={name}>
+                                                {name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </Field>
+                            </div>
+
+                            <Field label="メッセージ" counter={`${values.description.length}/${MESSAGE_MAX}`}>
+                                <textarea
+                                    className="profile-edit__input"
+                                    rows={4}
+                                    maxLength={MESSAGE_MAX}
+                                    value={values.description}
+                                    onChange={(e) => setField('description', e.target.value)}
+                                />
+                            </Field>
+                        </div>
+                    </div>
+                </section>
+
+                {/* スキル */}
+                <div className="profile-edit__skills">
+                    <section className="profile-edit__card">
+                        <SkillTagEditor
+                            title="スキル登録"
+                            skills={values.teaches}
+                            onChange={(skills) => setField('teaches', skills)}
+                        />
+                    </section>
+
+                    <section className="profile-edit__card">
+                        <SkillTagEditor
+                            title="交換したいスキル登録"
+                            skills={values.learns}
+                            onChange={(skills) => setField('learns', skills)}
+                        />
+                    </section>
+                </div>
+
+                {formError && (
+                    <p className="profile-edit__error profile-edit__form-error" role="alert">
+                        {formError}
+                    </p>
+                )}
+
+                <div className="profile-edit__actions">
+                    <button className="profile-edit__save" type="submit" disabled={submitting}>
+                        プロフィールを保存する
+                    </button>
+                </div>
+            </form>
         </main>
     )
 }
