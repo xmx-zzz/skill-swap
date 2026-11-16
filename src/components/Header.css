@@ -1,0 +1,131 @@
+/* ========================================
+   ヘッダー全体
+======================================== */
+
+.main-header {
+  width: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 157px;
+}
+
+/* ========================================
+   検索バー
+======================================== */
+
+.header-search {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  flex: 1;
+  min-width: 0;
+  height: 56px;
+  padding: 0 28px;
+  box-sizing: border-box;
+
+  background-color: #E8ECF5;
+  border: none;
+  border-radius: 50px;
+}
+
+.search-icon {
+  flex-shrink: 0;
+  color: #666666;
+}
+
+.header-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 18px;
+  color: #5B5C5E;
+}
+
+.header-search input::placeholder {
+  color: #5B5C5E;
+  opacity: 1;
+}
+
+/* ========================================
+   チャットボタン
+======================================== */
+
+.header-chat-button {
+  position: relative;
+  flex-shrink: 0;
+
+  width: 153px;
+  height: 41px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background-color: #FFFFFF;
+  border: 1px solid #4885ED;
+  border-radius: 14px;
+
+  color: #4885ED;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.header-chat-button:hover {
+  background-color: #F0F5FF;
+}
+
+/* 未読件数 */
+.header-chat-badge {
+  position: absolute;
+  top: -12px;
+  right: -8px;
+
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #DB3236;
+  color: #FFFFFF;
+  border-radius: 50%;
+
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ========================================
+   スマホ対応
+======================================== */
+
+@media (max-width: 600px) {
+  .main-header {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .header-search {
+    gap: 10px;
+    padding: 0 14px;
+  }
+
+  .header-chat-button {
+    width: 52px;
+    height: 48px;
+  }
+
+  .header-chat-button span:not(.header-chat-badge) {
+    display: none;
+  }
+}

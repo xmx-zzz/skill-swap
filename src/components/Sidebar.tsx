@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "../lib/auth";
 import "./Sidebar.css";
+import logo from "../assets/icons/SKILL_SWAP_rog.png";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       {/* ロゴ */}
-      <div className="sidebar-logo">
-        SKILL SWAP
-      </div>
+      <NavLink to="/discover" className="sidebar-logo">
+        <img src={logo} alt="SKILL SWAP" />
+      </NavLink>
 
       <nav className="sidebar-menu">
 
@@ -66,15 +67,36 @@ function Sidebar() {
 
         {/* スキル */}
         <NavLink
-          to="/skills"
+          to="/search"
           className={({ isActive }) =>
             `sidebar-item ${isActive ? "active" : ""}`
           }
         >
           <span className="sidebar-icon">
-            <Icon icon="carbon:skill-level-advanced" width="32" height="32" />
+            <Icon
+              icon="carbon:skill-level-advanced"
+              width="32"
+              height="32"
+            />
           </span>
           <span>スキル</span>
+        </NavLink>
+
+        {/* カレンダー */}
+        <NavLink
+          to="/calendar"
+          className={({ isActive }) =>
+            `sidebar-item ${isActive ? "active" : ""}`
+          }
+        >
+          <span className="sidebar-icon">
+            <Icon
+              icon="andrsrxn:calendar-days"
+              width="24"
+              height="24"
+            />
+          </span>
+          <span>カレンダー</span>
         </NavLink>
 
         {/* 申請管理 */}

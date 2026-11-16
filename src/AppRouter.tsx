@@ -1,74 +1,105 @@
 
-// URLごとに表示する画面を振り分ける。
-// App.tsx はスキル交換画面(別の人が作成)なので、ここから呼び出している。
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+// ========================================
+// ルーティング設定
+// URLごとに表示する画面を振り分ける
+// ========================================
 
-import SkillExchange from './App'
-import ProtectedRoute from './ProtectedRoute'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Profile from './pages/Profile'
-import ProfileEdit from './pages/ProfileEdit'
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-// メンバー・検索担当の3画面
-import SearchResults from './pages/SearchResults'
-import MemberList from './pages/MemberList'
-import MemberDetail from './pages/MemberDetail'
+// アプリ本体
+import SkillExchange from "./App";
 
-import PopularSkills from './pages/PopularSkills'
-import Home from './pages/Home'
-import ApplicationManagement from './pages/ApplicationManagement'
-import Notice from './pages/Notice'
+// 認証関連
+import ProtectedRoute from "./ProtectedRoute";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
-import MainLayout from './layouts/MainLayout'
+// プロフィール関連
+import Profile from "./pages/Profile";
+import ProfileEdit from "./pages/ProfileEdit";
+
+// ホーム・検索関連
+import Home from "./pages/Home";
+import SearchResults from "./pages/SearchResults";
+import PopularSkills from "./pages/PopularSkills";
+
+// メンバー関連
+import MemberList from "./pages/MemberList";
+import MemberDetail from "./pages/MemberDetail";
+
+// その他の画面
+import Notice from "./pages/Notice";
+import Chat from "./pages/Chat";
+import Calendar from "./pages/Calendar";
+import ApplicationManagement from "./pages/ApplicationManagement";
+
+// 共通レイアウト
+import MainLayout from "./layouts/MainLayout";
 
 export default function AppRouter() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                {/* トップ(/)を開いたら、ログイン画面に移動する */}
-                <Route path="/" element={<Navigate to="/login" replace />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+  return (
+    <BrowserRouter>
+      <Routes>
 
-                {/* サイドバーを表示する画面 */}
-                <Route element={<MainLayout />}>
-                    <Route path="/discover" element={<SkillExchange />} />
-                    <Route path="/home" element={<Home />} />
+        {/* トップページ */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
 
-                    {/* ログインしている人だけが見られる画面 */}
-                    <Route
-                        path="/profile"
-                        element={
-                            <ProtectedRoute>
-                                <Profile />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path="/profile/edit"
-                        element={
-                            <ProtectedRoute>
-                                <ProfileEdit />
-                            </ProtectedRoute>
-                        }
-                    />
+        {/* ログイン・新規登録 */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-                    <Route path="/skills" element={<PopularSkills />} />
-                    <Route path="/notice" element={<Notice />} />
-                    <Route path="/application" element={<ApplicationManagement />} />
+        {/* サイドバー付き画面 */}
+        <Route element={<MainLayout />}>
 
-                    {/* 検索結果一覧（スキル一覧）*/}
-                    <Route path="/search" element={<SearchResults />} />
-                    {/* メンバー一覧（?skill=ID でスキル保持者のみ / ?sort= で並び順）*/}
-                    <Route path="/members" element={<MemberList />} />
-                    {/* 個人User詳細（％表示 + 交換申請）*/}
-                    <Route path="/members/:id" element={<MemberDetail />} />
-                </Route>
+          {/* ホーム・スキル交換 */}
+          <Route path="/discover" element={<SkillExchange />} />
+          <Route path="/home" element={<Home />} />
 
-                {/* それ以外のURLも、いまのところログイン画面に移動する */}
-                <Route path="*" element={<Navigate to="/login" replace />} />
-            </Routes>
-        </BrowserRouter>
-    )
+          {/* 検索・スキル一覧 */}
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/skills" element={<PopularSkills />} />
+
+          {/* メンバー */}
+          <Route path="/members" element={<MemberList />} />
+          <Route path="/members/:id" element={<MemberDetail />} />
+
+          {/* お知らせ・チャット・カレンダー */}
+          <Route path="/notice" element={<Notice />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/calendar" element={<Calendar />} />
+
+          {/* 申請管理 */}
+          <Route
+            path="/application"
+            element={<ApplicationManagement />}
+          />
+
+          {/* プロフィール（ログイン必須） */}
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* プロフィール編集（ログイン必須） */}
+          <Route
+            path="/profile/edit"
+            element={
+              <ProtectedRoute>
+                <ProfileEdit />
+              </ProtectedRoute>
+            }
+          />
+
+        </Route>
+
+        {/* 存在しないURLはログイン画面へ */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+
+      </Routes>
+    </BrowserRouter>
+  );
 }

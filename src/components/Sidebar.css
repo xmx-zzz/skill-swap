@@ -12,23 +12,30 @@
 
 /* ロゴ */
 .sidebar-logo {
-  color: #05448E;
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: 45px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 70px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar-logo img {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* メニュー */
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 20px;
 }
 
 /* メニューボタン */
 .sidebar-item {
   width: 100%;
-  min-height: 68px;
+  min-height: 50px;
   padding: 10px 20px;
   display: flex;
   align-items: center;
