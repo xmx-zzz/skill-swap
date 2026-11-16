@@ -25,12 +25,10 @@
   justify-content: center;
   align-items: flex-start;
 
-  background: linear-gradient(
-    110deg,
-    #1678EF 0%,
-    #0875E9 45%,
-    #13B8ED 100%
-  );
+  background-image: url("../assets/images/main%20visual.png");
+  background-size: cover;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
 
   border-radius: 40px;
 }
