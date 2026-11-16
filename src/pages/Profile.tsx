@@ -11,24 +11,24 @@ function SkillList({ skills }: { skills: string[] }) {
 
     return (
         <ul className="profile__skills">
-        {skills.map((skill) => (
-            <li key={skill} className="profile__skill">
-            {skill}
-            </li>
-        ))}
+            {skills.map((skill) => (
+                <li key={skill} className="profile__skill">
+                    {skill}
+                </li>
+            ))}
         </ul>
     )
-    }
+}
 
-    export default function Profile() {
+export default function Profile() {
     const [profile, setProfile] = useState<ProfileData>(EMPTY_PROFILE)
     const [loading, setLoading] = useState(true)
 
     // 画面が表示されたときに、1回だけ保存済みのプロフィールを読み込む
     useEffect(() => {
         async function load() {
-        setProfile(await loadProfile())
-        setLoading(false)
+            setProfile(await loadProfile())
+            setLoading(false)
         }
         load()
     }, [])
@@ -44,42 +44,42 @@ function SkillList({ skills }: { skills: string[] }) {
 
     return (
         <main className="profile">
-        <h1 className="profile__title">プロフィール</h1>
+            <h1 className="profile__title">プロフィール</h1>
 
-        {isEmpty ? (
-            <p className="profile__message">まだプロフィールが登録されていません。</p>
-        ) : (
-            <dl className="profile__list">
-            <div className="profile__item">
-                <dt>ユーザー名</dt>
-                <dd>{profile.username || '未設定'}</dd>
-            </div>
-            <div className="profile__item">
-                <dt>学校・学科</dt>
-                <dd>{profile.school || '未設定'}</dd>
-            </div>
-            <div className="profile__item">
-                <dt>自己紹介</dt>
-                <dd>{profile.description || '未設定'}</dd>
-            </div>
-            <div className="profile__item">
-                <dt>教えられるスキル</dt>
-                <dd>
-                <SkillList skills={profile.teaches} />
-                </dd>
-            </div>
-            <div className="profile__item">
-                <dt>学びたいスキル</dt>
-                <dd>
-                <SkillList skills={profile.learns} />
-                </dd>
-            </div>
-            </dl>
-        )}
+            {isEmpty ? (
+                <p className="profile__message">まだプロフィールが登録されていません。</p>
+            ) : (
+                <dl className="profile__list">
+                    <div className="profile__item">
+                        <dt>ユーザー名</dt>
+                        <dd>{profile.username || '未設定'}</dd>
+                    </div>
+                    <div className="profile__item">
+                        <dt>学校・学科</dt>
+                        <dd>{profile.school || '未設定'}</dd>
+                    </div>
+                    <div className="profile__item">
+                        <dt>自己紹介</dt>
+                        <dd>{profile.description || '未設定'}</dd>
+                    </div>
+                    <div className="profile__item">
+                        <dt>教えられるスキル</dt>
+                        <dd>
+                            <SkillList skills={profile.teaches} />
+                        </dd>
+                    </div>
+                    <div className="profile__item">
+                        <dt>学びたいスキル</dt>
+                        <dd>
+                            <SkillList skills={profile.learns} />
+                        </dd>
+                    </div>
+                </dl>
+            )}
 
-        <Link className="profile__edit-link" to="/profile/edit">
-            プロフィールを編集する
-        </Link>
+            <Link className="profile__edit-link" to="/profile/edit">
+                プロフィールを編集する
+            </Link>
         </main>
     )
 }

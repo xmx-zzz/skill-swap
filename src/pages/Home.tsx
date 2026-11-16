@@ -1,4 +1,6 @@
 
+import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import "./Home.css";
 
 // ========================================
@@ -9,7 +11,6 @@ import "./Home.css";
 type Skill = {
   id: number;
   name: string;
-  userCount: number;
 };
 
 // ユーザー情報
@@ -39,12 +40,12 @@ type Notification = {
 
 // 人気スキルの仮データ
 const popularSkills: Skill[] = [
-  { id: 1, name: "HTML", userCount: 20 },
-  { id: 2, name: "CSS", userCount: 18 },
-  { id: 3, name: "JavaScript", userCount: 15 },
-  { id: 4, name: "Python", userCount: 12 },
-  { id: 5, name: "React", userCount: 10 },
-  { id: 6, name: "Figma", userCount: 8 },
+  { id: 1, name: "Illustrator" },
+  { id: 2, name: "Photoshop" },
+  { id: 3, name: "Figma" },
+  { id: 4, name: "HTML/CSS" },
+  { id: 5, name: "React" },
+  { id: 6, name: "プログラミング" },
 ];
 
 // 相性のいい人の仮データ
@@ -101,44 +102,6 @@ const notifications: Notification[] = [
     date: "2026/10/30",
     type: "メンバー",
   },
-  {
-    id: 4,
-    title: "新しいおすすめメンバーが追加されました",
-    date: "2026/10/29",
-    type: "おすすめ",
-  },
-];
-
-// メンバー一覧の仮データ
-// おすすめ欄とは別のユーザーを表示する
-const members: User[] = [
-  {
-    id: 4,
-    name: "伊藤 翔",
-    school: "情報処理科",
-    description: "Pythonを使った開発が好きです。",
-    avatar: "🚀",
-    teaches: ["Python", "Java"],
-    learns: ["HTML", "CSS"],
-  },
-  {
-    id: 5,
-    name: "田中 太郎",
-    school: "情報システム科",
-    description: "Web制作やアプリ開発を勉強しています。",
-    avatar: "💻",
-    teaches: ["JavaScript", "React"],
-    learns: ["Webデザイン"],
-  },
-  {
-    id: 6,
-    name: "山田 美月",
-    school: "デザイン学科",
-    description: "イラストやデザインを勉強しています。",
-    avatar: "🌷",
-    teaches: ["Illustrator", "Figma"],
-    learns: ["HTML", "CSS"],
-  },
 ];
 
 // ========================================
@@ -152,60 +115,83 @@ function Home() {
       {/* ヒーローセクション */}
       <section className="hero-section">
         <h1>
-          スキル交換して
+          スキルを交換して
           <br />
-          もっと広がる世界
+          もっと広がる。
         </h1>
 
-        <p>
-          自分の得意を誰かの学びに。
-          <br />
-          新しいスキルとの出会いを見つけよう。
-        </p>
-
-        <button type="button" className="hero-button">
+        <Link to="/search" className="hero-button">
           スキルを探す
-        </button>
+          <Icon icon="material-symbols:chevron-right" width="24" />
+        </Link>
       </section>
 
-      {/* 人気スキル */}
-      <section className="popular-skills-section">
+      {/* 人気スキル・お知らせ */}
+      <div className="home-middle">
 
-        <div className="section-heading">
-          <div>
-            <span className="section-subtitle">
-              POPULAR SKILLS
-            </span>
-            <h2>人気スキル</h2>
+        {/* 人気スキル */}
+        <section className="popular-skills-section">
+
+          <div className="section-heading">
+            <h2>人気のスキル</h2>
+
+            <Link to="/skills" className="more-button">
+              もっと見る
+              <Icon icon="material-symbols:chevron-right" width="22" />
+            </Link>
           </div>
 
-          <button type="button" className="more-button">
-            もっと見る →
-          </button>
-        </div>
+          <div className="popular-skills-list">
+            {popularSkills.map((skill) => (
+              <Link
+                to="/skills"
+                className="popular-skill-card"
+                key={skill.id}
+              >
+                <span>{skill.name}</span>
+              </Link>
+            ))}
+          </div>
 
-        <div className="popular-skills-list">
-          {popularSkills.map((skill) => (
-            <div className="popular-skill-card" key={skill.id}>
-              <h3>{skill.name}</h3>
-              <span>{skill.userCount}人が登録</span>
-            </div>
-          ))}
-        </div>
+        </section>
 
-      </section>
+        {/* お知らせ */}
+        <section className="notifications-section">
 
-      {/* おすすめ欄 */}
+          <div className="notification-heading">
+            <Icon icon="akar-icons:bell" width="34" height="34" />
+            <h2>お知らせ</h2>
+          </div>
+
+          <div className="notification-list">
+            {notifications.map((notification) => (
+              <div
+                className="notification-item"
+                key={notification.id}
+              >
+                <span className="notification-date">
+                  {notification.date.slice(5).replace("/", "/")}
+                </span>
+
+                <p>{notification.title}</p>
+              </div>
+            ))}
+          </div>
+
+        </section>
+
+      </div>
+
+      {/* マッチユーザー */}
       <section className="recommended-section">
 
         <div className="section-heading">
-          <div>
-            <span className="section-subtitle">
-              RECOMMENDED
-            </span>
-            <h2>あなたにおすすめの人</h2>
-          </div>
+          <h2>マッチユーザー</h2>
 
+          <Link to="/members" className="more-button">
+            もっと見る
+            <Icon icon="material-symbols:chevron-right" width="22" />
+          </Link>
         </div>
 
         <div className="user-card-list">
@@ -216,120 +202,31 @@ function Home() {
                 {user.avatar}
               </div>
 
-              <div className="user-card-info">
-                <h3>{user.name}</h3>
-                <span>{user.school}</span>
-              </div>
-
-              <span className="match-score">
-                相性 {user.matchScore}%
-              </span>
-
-              <p>{user.description}</p>
-
-              <div className="user-skill-list">
-                <span>教えられる：</span>
-                {user.teaches.join("・")}
-              </div>
-
-              <div className="user-skill-list">
-                <span>学びたい：</span>
-                {user.learns.join("・")}
-              </div>
-
-              <button type="button" className="detail-button">
-                プロフィールを見る →
-              </button>
-
-            </article>
-          ))}
-        </div>
-
-      </section>
-
-      {/* お知らせ欄 */}
-      <section className="notifications-section">
-
-        <div className="section-heading">
-          <div>
-            <span className="section-subtitle">
-              NOTIFICATIONS
-            </span>
-            <h2>お知らせ</h2>
-          </div>
-
-          <button type="button" className="more-button">
-            もっと見る →
-          </button>
-        </div>
-
-        <div className="notification-list">
-          {notifications.map((notification) => (
-            <div
-              className="notification-item"
-              key={notification.id}
-            >
-              <span className="notification-type">
-                {notification.type}
-              </span>
-
-              <p>{notification.title}</p>
-
-              <span className="notification-date">
-                {notification.date}
-              </span>
-            </div>
-          ))}
-        </div>
-
-      </section>
-
-      {/* メンバー一覧 */}
-      <section className="members-section">
-
-        <div className="section-heading">
-          <div>
-            <span className="section-subtitle">
-              MEMBERS
-            </span>
-            <h2>メンバー一覧</h2>
-          </div>
-
-          <button type="button" className="more-button">
-            もっと見る →
-          </button>
-        </div>
-
-        <div className="user-card-list">
-          {members.map((user) => (
-            <article className="member-card" key={user.id}>
-
-              <div className="user-avatar">
-                {user.avatar}
-              </div>
-
               <h3>{user.name}</h3>
-              <span>{user.school}</span>
+
+              <div className="user-skill-tags">
+                {user.teaches.slice(0, 2).map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
 
               <p>{user.description}</p>
 
-              <div className="user-skill-list">
-                <span>教えられる：</span>
-                {user.teaches.join("・")}
-              </div>
-
-              <div className="user-skill-list">
-                <span>学びたい：</span>
-                {user.learns.join("・")}
-              </div>
-
-              <button type="button" className="detail-button">
-                プロフィールを見る →
-              </button>
+              <Link
+                to={`/members/${user.id}`}
+                className="detail-button"
+              >
+                プロフィールを見る
+              </Link>
 
             </article>
           ))}
         </div>
+
+        <Link to="/members" className="members-button">
+          ユーザー一覧
+          <Icon icon="material-symbols:chevron-right" width="24" />
+        </Link>
 
       </section>
 

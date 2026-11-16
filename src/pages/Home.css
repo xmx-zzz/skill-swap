@@ -6,8 +6,8 @@
 .home {
   width: 100%;
   min-height: 100vh;
+  padding: 20px 30px 60px;
   background-color: #F5F9FD;
-  padding: 40px;
   box-sizing: border-box;
 }
 
@@ -17,80 +17,96 @@
 
 .hero-section {
   width: 100%;
-  min-height: 300px;
-  background-color: #FFFFFF;
-  border-radius: 16px;
-  padding: 50px;
+  min-height: 350px;
+  padding: 60px 70px;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  background: linear-gradient(
+    110deg,
+    #1678EF 0%,
+    #0875E9 45%,
+    #13B8ED 100%
+  );
+
+  border-radius: 40px;
 }
 
 .hero-section h1 {
-  color: #05448E;
-  font-size: 36px;
-  font-weight: bold;
-  line-height: 1.5;
-  margin: 0 0 16px;
-}
-
-.hero-section p {
-  color: #A3A9B1;
-  font-size: 16px;
-  line-height: 1.8;
-  margin: 0 0 24px;
+  color: #FFFFFF;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 0 0 40px;
 }
 
 .hero-button {
+  width: 290px;
+  min-height: 48px;
+  padding: 8px 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
   background-color: #0B77F5;
   color: #FFFFFF;
-  border: none;
-  border-radius: 8px;
-  padding: 14px 28px;
-  font-size: 16px;
+  border: 1px solid #FFFFFF;
+  border-radius: 18px;
+
+  font-size: 20px;
   font-weight: bold;
+  text-decoration: none;
   cursor: pointer;
 }
 
 /* ========================================
-   各セクション共通
+   セクション共通
 ======================================== */
 
+.home-middle {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) minmax(250px, 1fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 110px;
+}
+
 .popular-skills-section,
-.recommended-section,
-.notifications-section,
-.members-section {
-  margin-top: 50px;
+.recommended-section {
+  min-width: 0;
 }
 
 .section-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-}
-
-.section-subtitle {
-  color: #A3A9B1;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  margin-bottom: 40px;
 }
 
 .section-heading h2 {
-  color: #05448E;
-  font-size: 24px;
-  margin: 6px 0 0;
+  color: #5B5C5E;
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0;
+  padding-left: 15px;
+  border-left: 14px solid #4885ED;
 }
 
 .more-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   background: none;
   border: none;
-  color: #0B77F5;
-  font-size: 14px;
+  color: #5B5C5E;
+  font-size: 16px;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -100,171 +116,230 @@
 
 .popular-skills-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px 28px;
 }
 
 .popular-skill-card {
-  background-color: #FFFFFF;
-  border: 1px solid #A3A9B1;
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.popular-skill-card h3 {
-  color: #05448E;
-  font-size: 18px;
-  margin: 0 0 10px;
-}
-
-.popular-skill-card span {
-  color: #A3A9B1;
-  font-size: 13px;
-}
-
-/* ========================================
-   おすすめ・メンバー一覧
-======================================== */
-
-.user-card-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.user-card,
-.member-card {
-  background-color: #FFFFFF;
-  border: 1px solid #A3A9B1;
-  border-radius: 12px;
-  padding: 24px;
+  min-height: 50px;
+  padding: 10px 12px;
   box-sizing: border-box;
-}
 
-.user-avatar {
-  width: 48px;
-  height: 48px;
-  background-color: #F5F9FD;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
-  margin-bottom: 12px;
-}
 
-.user-card-info h3,
-.member-card h3 {
-  color: #05448E;
-  font-size: 18px;
-  margin: 0 0 4px;
-}
+  background-color: #E7EBF4;
+  border: 1px solid #D5DAE4;
+  border-radius: 10px;
 
-.user-card-info span,
-.member-card > span {
-  color: #A3A9B1;
-  font-size: 13px;
-}
-
-.match-score {
-  display: inline-block;
-  background-color: #EAF3FF;
-  color: #0B77F5;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 6px 10px;
-  border-radius: 20px;
-  margin-top: 12px;
-}
-
-.user-card p,
-.member-card p {
-  color: #05448E;
-  font-size: 14px;
-  line-height: 1.7;
-  margin: 16px 0;
-}
-
-.user-skill-list {
-  color: #05448E;
-  font-size: 12px;
-  line-height: 1.8;
-  margin-top: 8px;
-  overflow-wrap: anywhere;
-}
-
-.user-skill-list span {
-  color: #A3A9B1;
-}
-
-.detail-button {
-  width: 100%;
-  background-color: #FFFFFF;
-  color: #0B77F5;
-  border: 1px solid #0B77F5;
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 18px;
-  font-size: 13px;
-  cursor: pointer;
+  color: #5B5C5E;
+  font-size: 17px;
+  text-decoration: none;
 }
 
 /* ========================================
    お知らせ
 ======================================== */
 
-.notification-list {
-  background-color: #FFFFFF;
+.notifications-section {
+  padding: 22px 18px;
+  background-color: #E7EBF4;
   border: 1px solid #A3A9B1;
-  border-radius: 12px;
-  padding: 8px 24px;
+  border-radius: 25px;
+  box-sizing: border-box;
+}
+
+.notification-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.notification-heading svg {
+  color: #4885ED;
+  flex-shrink: 0;
+}
+
+.notification-heading h2 {
+  color: #5B5C5E;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
 }
 
 .notification-item {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px solid #E5EAF0;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #A3A9B1;
 }
 
 .notification-item:last-child {
   border-bottom: none;
 }
 
-.notification-type {
-  min-width: 75px;
-  background-color: #F5F9FD;
-  color: #05448E;
-  border-radius: 6px;
-  padding: 6px 8px;
-  text-align: center;
-  font-size: 12px;
+.notification-date {
+  flex-shrink: 0;
+  padding: 3px 7px;
+  background-color: #A3A9B1;
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-size: 11px;
+  white-space: nowrap;
 }
 
 .notification-item p {
-  flex: 1;
-  color: #05448E;
-  font-size: 14px;
+  color: #5B5C5E;
+  font-size: 12px;
+  line-height: 1.5;
   margin: 0;
 }
 
-.notification-date {
-  color: #A3A9B1;
+/* ========================================
+   マッチユーザー
+======================================== */
+
+.recommended-section {
+  margin-top: 120px;
+}
+
+.user-card-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.user-card {
+  min-width: 0;
+  padding: 18px 14px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #E7EBF4;
+  border: 1px solid #D5DAE4;
+  border-radius: 12px;
+}
+
+.user-avatar {
+  width: 76px;
+  height: 76px;
+  margin-bottom: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #4885ED;
+  border-radius: 50%;
+  font-size: 38px;
+}
+
+.user-card h3 {
+  color: #5B5C5E;
+  font-size: 21px;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.user-skill-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.user-skill-tags span {
+  padding: 4px 12px;
+  background-color: #A3A9B1;
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.user-card p {
+  width: 100%;
+  min-height: 48px;
+  color: #5B5C5E;
   font-size: 12px;
+  line-height: 1.6;
+  margin: 0 0 15px;
+}
+
+.detail-button {
+  width: 85%;
+  min-height: 30px;
+  margin-top: auto;
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  border: 1px solid #4885ED;
+  border-radius: 20px;
+
+  color: #5B5C5E;
+  font-size: 12px;
+  text-decoration: none;
 }
 
 /* ========================================
-   メンバー一覧
+   ユーザー一覧ボタン
 ======================================== */
 
-.member-card {
-  text-align: left;
+.members-button {
+  width: 285px;
+  min-height: 44px;
+  margin: 55px auto 0;
+  padding: 8px 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  background-color: #0B77F5;
+  color: #FFFFFF;
+  border-radius: 16px;
+
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 /* ========================================
    レスポンシブ対応
 ======================================== */
+
+@media (max-width: 1000px) {
+  .home-middle {
+    grid-template-columns: 1fr;
+    margin-top: 70px;
+  }
+
+  .notifications-section {
+    max-width: 100%;
+  }
+
+  .user-card-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
 @media (max-width: 768px) {
   .home {
@@ -272,32 +347,35 @@
   }
 
   .hero-section {
-    padding: 30px;
+    min-height: 280px;
+    padding: 35px;
+    border-radius: 28px;
   }
 
   .hero-section h1 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
-  .popular-skills-list,
-  .user-card-list {
-    grid-template-columns: repeat(2, 1fr);
+  .popular-skills-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .notification-item {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .notification-item p {
-    min-width: 100%;
-    order: 3;
+  .recommended-section {
+    margin-top: 75px;
   }
 }
 
 @media (max-width: 480px) {
-  .popular-skills-list,
   .user-card-list {
     grid-template-columns: 1fr;
+  }
+
+  .section-heading h2 {
+    font-size: 20px;
+  }
+
+  .hero-button,
+  .members-button {
+    width: 100%;
   }
 }
