@@ -99,6 +99,23 @@ function Sidebar() {
           <span>カレンダー</span>
         </NavLink>
 
+        {/* グループ */}
+        <NavLink
+          to="/groups"
+          className={({ isActive }) =>
+            `sidebar-item ${isActive ? "active" : ""}`
+          }
+        >
+          <span className="sidebar-icon">
+            <Icon
+              icon="material-symbols:groups-outline"
+              width="24"
+              height="24"
+            />
+          </span>
+          <span>グループ</span>
+        </NavLink>
+
         {/* 申請管理 */}
         <NavLink
           to="/application"

@@ -1,0 +1,299 @@
+
+/* ========================================
+   グループ画面
+======================================== */
+
+.groups-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #F5F9FD;
+}
+
+/* ========================================
+   見出し
+======================================== */
+
+.groups-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.groups-heading h1 {
+  color: #5B5C5E;
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.groups-heading p {
+  color: #A3A9B1;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ========================================
+   グループ作成ボタン
+======================================== */
+
+.create-group-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+
+  background-color: #0B77F5;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 14px;
+
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.create-group-button:hover {
+  background-color: #0865D0;
+}
+
+/* ========================================
+   グループ一覧
+======================================== */
+
+.groups-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.group-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+
+  background-color: #E7EBF4;
+  border: 1px solid #D5DAE4;
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.group-card-icon {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #FFFFFF;
+  border-radius: 18px;
+  font-size: 32px;
+}
+
+.group-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.group-card-content h2 {
+  color: #5B5C5E;
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+
+.group-card-content p {
+  color: #777D87;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.group-card-content span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #A3A9B1;
+  font-size: 13px;
+}
+
+.group-detail-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+
+  padding: 9px 13px;
+  background-color: #FFFFFF;
+  border: 1px solid #4885ED;
+  border-radius: 20px;
+
+  color: #4885ED;
+  font-size: 12px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.group-detail-button:hover {
+  background-color: #4885ED;
+  color: #FFFFFF;
+}
+
+.no-groups {
+  padding: 50px;
+  color: #A3A9B1;
+  text-align: center;
+}
+
+/* ========================================
+   グループ作成モーダル
+======================================== */
+
+.group-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.group-modal {
+  width: 100%;
+  max-width: 480px;
+  padding: 30px;
+  box-sizing: border-box;
+
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.group-modal h2 {
+  color: #5B5C5E;
+  font-size: 23px;
+  margin: 0 0 25px;
+}
+
+.group-modal label {
+  display: block;
+  color: #5B5C5E;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 18px 0 9px;
+}
+
+.group-icon-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.group-icon-options button {
+  width: 48px;
+  height: 48px;
+
+  background-color: #E7EBF4;
+  border: 2px solid transparent;
+  border-radius: 12px;
+
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.group-icon-options button.selected {
+  border-color: #0B77F5;
+  background-color: #E5F1FF;
+}
+
+.group-modal input,
+.group-modal textarea {
+  width: 100%;
+  padding: 12px 14px;
+  box-sizing: border-box;
+
+  background-color: #F5F9FD;
+  border: 1px solid #D5DAE4;
+  border-radius: 10px;
+
+  color: #5B5C5E;
+  font-size: 14px;
+  outline: none;
+}
+
+.group-modal input:focus,
+.group-modal textarea:focus {
+  border-color: #0B77F5;
+}
+
+.group-modal textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.group-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.group-modal-buttons button {
+  padding: 11px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #E7EBF4;
+  border: none;
+  color: #5B5C5E;
+}
+
+.submit-button {
+  background-color: #0B77F5;
+  border: none;
+  color: #FFFFFF;
+}
+
+/* ========================================
+   レスポンシブ対応
+======================================== */
+
+@media (max-width: 900px) {
+  .groups-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .groups-page {
+    padding: 20px;
+  }
+
+  .groups-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .group-card {
+    flex-wrap: wrap;
+  }
+
+  .group-detail-button {
+    margin-left: auto;
+  }
+}
