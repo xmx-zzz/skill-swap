@@ -32,6 +32,9 @@ import Notice from "./pages/Notice";
 import Chat from "./pages/Chat";
 import Calendar from "./pages/Calendar";
 import ApplicationManagement from "./pages/ApplicationManagement";
+import Groups from "./pages/Groups";
+import GroupDetail from "./pages/GroupDetail";
+import GroupChat from "./pages/GroupChat";
 
 // 共通レイアウト
 import MainLayout from "./layouts/MainLayout";
@@ -50,6 +53,11 @@ export default function AppRouter() {
 
         {/* サイドバー付き画面 */}
         <Route element={<MainLayout />}>
+
+          {/* グループ */}
+          <Route path="/groups" element={<Groups />} />
+          <Route path="/groups/:id" element={<GroupDetail />} />
+          <Route path="/groups/:id/chat" element={<GroupChat />} />
 
           {/* ホーム・スキル交換 */}
           <Route path="/discover" element={<SkillExchange />} />

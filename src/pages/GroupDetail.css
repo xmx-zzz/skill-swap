@@ -1,0 +1,515 @@
+
+.group-detail-page {
+  min-height: 100vh;
+  padding: 30px;
+  background: #F5F9FD;
+  color: #5B5C5E;
+}
+
+/* 戻るボタン */
+.back-groups-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: #5B5C5E;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* グループ情報 */
+.group-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+  margin-bottom: 30px;
+  background: #E7EBF4;
+  border-radius: 18px;
+}
+
+.group-detail-main {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.group-detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 18px;
+  font-size: 42px;
+}
+
+.group-detail-main h1 {
+  margin: 0 0 10px;
+  color: #05448E;
+  font-size: 26px;
+}
+
+.group-detail-main p {
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.group-detail-main span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7B8490;
+  font-size: 14px;
+}
+
+.group-detail-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.edit-group-button,
+.group-chat-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.edit-group-button {
+  background: white;
+  color: #5B5C5E;
+}
+
+.group-chat-link {
+  background: #0B77F5;
+  color: white;
+}
+
+/* 掲示板 */
+.group-board {
+  padding: 28px;
+  background: white;
+  border-radius: 18px;
+}
+
+.group-board-heading {
+  margin-bottom: 22px;
+}
+
+.group-board-heading h2 {
+  margin: 0 0 8px;
+  color: #05448E;
+  font-size: 22px;
+}
+
+.group-board-heading p {
+  margin: 0;
+  color: #A3A9B1;
+  font-size: 14px;
+}
+
+/* 投稿フォーム */
+.group-post-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.group-post-form textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid #DCE2EA;
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.group-post-form textarea:focus {
+  border-color: #0B77F5;
+}
+
+.group-post-button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #0B77F5;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 投稿一覧 */
+.group-post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.group-post-card {
+  padding: 20px;
+  border: 1px solid #E7EBF4;
+  border-radius: 14px;
+  background: #FAFBFD;
+}
+
+.group-post-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-post-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.group-post-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #E7EBF4;
+  color: #4885ED;
+  font-size: 22px;
+}
+
+.group-post-author strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #05448E;
+  font-size: 14px;
+}
+
+.group-post-author span {
+  color: #A3A9B1;
+  font-size: 12px;
+}
+
+.delete-post-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #A3A9B1;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.delete-post-button:hover {
+  background: #FDECEC;
+  color: #E05252;
+}
+
+.group-post-content {
+  margin: 18px 0 0;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.no-group-posts {
+  padding: 35px 10px;
+  color: #A3A9B1;
+  text-align: center;
+}
+
+/* 編集モーダル */
+.group-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(20, 35, 55, 0.45);
+}
+
+.group-modal {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  box-sizing: border-box;
+  background: white;
+  border-radius: 18px;
+}
+
+.group-modal h2 {
+  margin: 0 0 24px;
+  color: #05448E;
+  font-size: 21px;
+}
+
+.group-modal label {
+  display: block;
+  margin: 18px 0 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.group-modal input,
+.group-modal textarea {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #DCE2EA;
+  border-radius: 9px;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.group-modal textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.group-icon-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.group-icon-options button {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #DCE2EA;
+  border-radius: 10px;
+  background: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.group-icon-options button.selected {
+  border: 2px solid #0B77F5;
+  background: #EEF6FF;
+}
+
+.group-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.cancel-button,
+.submit-button {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 9px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background: #E7EBF4;
+  color: #5B5C5E;
+}
+
+.submit-button {
+  background: #0B77F5;
+  color: white;
+}
+
+
+/* ========================================
+   掲示板の返信機能
+======================================== */
+
+/* 返信件数 */
+.group-reply-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  padding-bottom: 12px;
+  color: #4885ED;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* 返信カード */
+.group-reply-card {
+  margin: 0 0 10px 20px;
+  padding: 14px 16px;
+  border-left: 3px solid #A9C9F5;
+  border-radius: 0 10px 10px 0;
+  background: #F0F5FC;
+}
+
+.group-reply-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-reply-top strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #05448E;
+  font-size: 13px;
+}
+
+.group-reply-top span {
+  color: #A3A9B1;
+  font-size: 11px;
+}
+
+.group-reply-card > p {
+  margin: 10px 0 0;
+  color: #5B5C5E;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* 返信削除ボタン */
+.delete-reply-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #A3A9B1;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.delete-reply-button:hover {
+  background: #FDECEC;
+  color: #E05252;
+}
+
+/* 返信入力欄 */
+.group-reply-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 12px 0 5px 20px;
+}
+
+.group-reply-form textarea {
+  flex: 1;
+  min-height: 42px;
+  padding: 11px 13px;
+  box-sizing: border-box;
+  border: 1px solid #DCE2EA;
+  border-radius: 10px;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.group-reply-form textarea:focus {
+  border-color: #0B77F5;
+}
+
+.group-reply-form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 11px 16px;
+  border: none;
+  border-radius: 9px;
+  background: #0B77F5;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.group-reply-form button:disabled {
+  background: #C7D4E5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .group-reply-card,
+  .group-reply-form {
+    margin-left: 8px;
+  }
+
+  .group-reply-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .group-reply-form button {
+    align-self: flex-end;
+  }
+}
+
+
+/* スマホ対応 */
+@media (max-width: 700px) {
+  .group-detail-page {
+    padding: 18px;
+  }
+
+  .group-detail-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .group-detail-actions {
+    width: 100%;
+  }
+
+  .group-detail-actions button,
+  .group-detail-actions a {
+    flex: 1;
+  }
+
+  .group-detail-main {
+    align-items: flex-start;
+  }
+
+  .group-detail-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 32px;
+  }
+
+  .group-detail-main h1 {
+    font-size: 21px;
+  }
+
+  .group-board {
+    padding: 18px;
+  }
+}
