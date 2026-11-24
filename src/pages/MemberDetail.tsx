@@ -11,6 +11,7 @@ import {
 } from '../lib/skillswap';
 import { hueOf, initialOf } from '../lib/avatar';
 import { SkillTag } from '../components/SkillTag';
+import RequestCommentForm from '../components/RequestCommentForm'; // ★ 追加
 import './MemberDetail.css';
 
 export default function MemberDetail() {
@@ -25,6 +26,7 @@ export default function MemberDetail() {
     const [sending, setSending] = useState(false);
     const [sent, setSent] = useState(false);
     const [error, setError] = useState('');
+    const [formOpen, setFormOpen] = useState(false); // ★ 追加: 一言コメントの入力欄を開いているか
 
     const goBack = () => {
         const idx = (window.history.state as { idx?: number } | null)?.idx ?? 0;
@@ -81,8 +83,8 @@ export default function MemberDetail() {
     // 相互マッチのときだけ申請できる（片方向では相手のメリットが無いため）
     const canRequest = match.tier === 'mutual';
 
-    /** 交換申請を送る */
-    const onRequest = async () => {
+    /** 交換申請を送る（★ 一言コメントを受け取る形に変更） */
+    const onRequest = async (comment: string) => {
         if (!canRequest) return;
         setError('');
         setSending(true);
@@ -91,9 +93,11 @@ export default function MemberDetail() {
                 targetId: member.id,
                 offeredSkillId: match.give[0].id, // 自分が教えるスキル
                 wantedSkillId: match.take[0].id, // 自分が学びたいスキル
-                message: `${match.give[0].name}を教えるので、${match.take[0].name}を教えてください！`,
+                // ★ 一言コメントがあればそれを、なければ定型文を送る
+                message: comment || `${match.give[0].name}を教えるので、${match.take[0].name}を教えてください！`,
             });
             setSent(true);
+            setFormOpen(false); // ★ 追加
         } catch (e) {
             setError(toErrorMessage(e));
         } finally {
@@ -130,11 +134,12 @@ export default function MemberDetail() {
                 </div>
 
                 <div className="md-actions">
+                    {/* ★ 押すと、すぐ送信せずに、一言コメントの入力欄を開く */}
                     <button
                         type="button"
                         className="md-btn"
-                        onClick={() => void onRequest()}
-                        disabled={!canRequest || sent || sending}
+                        onClick={() => setFormOpen(true)}
+                        disabled={!canRequest || sent || sending || formOpen}
                         title={canRequest ? undefined : '相互マッチした相手にのみ申請できます'}
                     >
                         {sent
@@ -150,6 +155,15 @@ export default function MemberDetail() {
                     </Link>
                 </div>
             </section>
+
+            {/* ★ 追加: 一言コメントの入力欄 */}
+            {formOpen && !sent && (
+                <RequestCommentForm
+                    sending={sending}
+                    onSubmit={(comment) => void onRequest(comment)}
+                    onCancel={() => setFormOpen(false)}
+                />
+            )}
 
             {error && (
                 <p className="md-error" role="alert">
