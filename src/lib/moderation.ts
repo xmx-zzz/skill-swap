@@ -135,3 +135,6 @@ export function moderationError(text: string): string {
     if (result.ok) return ''
     return `「${result.category}」にあたる表現が含まれている可能性があります。別の言い方にしてください。`
 }
+
+// 不適切な表現で止めたときに投げるエラー。画面側で、メッセージをそのまま表示できる目印になる
+export class ModerationError extends Error {}

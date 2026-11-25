@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { MOCK_MEMBERS, MOCK_ME } from '../mocks/members';
-
+import { ModerationError, moderationError } from './moderation';
 
 // 型定義
 
@@ -82,6 +82,7 @@ export const ERROR_MESSAGES = {
 export function toErrorMessage(error: unknown): string {
     if (typeof error === 'string') return error;
     const e = error as { message?: string; code?: string; status?: number } | null;
+    if (error instanceof ModerationError) return error.message;
     if (!e) return ERROR_MESSAGES.unknown;
 
     if (e.message === 'Invalid login credentials') return ERROR_MESSAGES.auth;
@@ -376,6 +377,10 @@ export async function createRequest(input: {
     wantedSkillId: number;
     message: string;
 }): Promise<void> {
+    // 不適切な表現が含まれていたら、送らずに止める(画面を通らない送り方への備え)
+    const problem = moderationError(input.message);
+    if (problem) throw new ModerationError(problem);
+
     if (!isSupabaseReady) return; // モック時は何もしない（画面側で「申請済み」表示にする）
 
     // requester_id は送らない。DB側(RLS)がログイン中の人を自動で入れる
@@ -387,7 +392,6 @@ export async function createRequest(input: {
     });
     if (error) throw new Error(toErrorMessage(error));
 }
-
 
 // Reactフック
 
